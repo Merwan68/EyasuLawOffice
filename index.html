@@ -39,22 +39,571 @@
         }
     </script>
     <style>
+        :root {
+            --ink: #08111f;
+            --gold-light: #ffd77b;
+            --gold: #f5a524;
+            --gold-deep: #c76b08;
+            --line: rgba(148, 163, 184, 0.2);
+            --shadow-xl: 0 32px 80px -34px rgba(5, 15, 31, 0.55);
+        }
+
+        html {
+            background: var(--ink);
+            scroll-padding-top: 5rem;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 15% 10%, rgba(245, 158, 11, 0.06), transparent 26rem),
+                radial-gradient(circle at 90% 35%, rgba(37, 99, 235, 0.045), transparent 28rem),
+                #f8fafc;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+            mix-blend-mode: soft-light;
+        }
+
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-deep), var(--gold-light), #fff4c4);
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.75);
+            transition: width 0.08s linear;
+        }
+
+        header {
+            transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        header.scrolled {
+            background: rgba(8, 17, 31, 0.9);
+            box-shadow: 0 18px 42px -30px rgba(0, 0, 0, 0.8);
+            border-color: rgba(245, 158, 11, 0.24) !important;
+        }
+
+        nav a {
+            position: relative;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 1.5rem;
+            right: 1.5rem;
+            bottom: -0.75rem;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: center;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transition: transform 0.25s ease;
+        }
+
+        nav a:hover {
+            transform: translateY(-1px);
+        }
+
+        nav a:hover::after,
+        nav a.text-white::after {
+            transform: scaleX(1);
+        }
+
+        a, button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        i[class^="fa-"],
+        i[class*=" fa-"] {
+            display: inline-grid;
+            place-items: center;
+            transform: translateZ(0);
+            text-shadow:
+                0.055em 0.07em 0 rgba(0, 0, 0, 0.2),
+                0.11em 0.14em 0.18em rgba(0, 0, 0, 0.22);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover i[class^="fa-"],
+        a:hover i[class*=" fa-"],
+        button:hover i[class^="fa-"],
+        button:hover i[class*=" fa-"],
+        .card-3d:hover i[class^="fa-"],
+        .card-3d:hover i[class*=" fa-"] {
+            transform: translateY(-3px) rotate(-5deg) scale(1.13);
+            filter: drop-shadow(0 7px 5px rgba(15, 23, 42, 0.22));
+            text-shadow: 0.07em 0.09em 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .logo-fallback::after {
+            content: "IA";
+            color: var(--gold-light);
+            font-weight: 900;
+            font-size: 0.78rem;
+            letter-spacing: -0.08em;
+        }
+        .icon-3d-well {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fff6d8 0%, #f8d48a 48%, #dfa52e 100%) !important;
+            border: 1px solid rgba(180, 113, 8, 0.22);
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.85),
+                inset -4px -5px 10px rgba(160, 95, 0, 0.18),
+                0 15px 25px -14px rgba(180, 113, 8, 0.7);
+            transform: translateZ(0);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        }
+
+        .icon-3d-well::before {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            z-index: -1;
+            border-radius: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .icon-3d-well::after {
+            content: "";
+            position: absolute;
+            width: 3rem;
+            height: 3rem;
+            top: -1.5rem;
+            right: -1.25rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.24);
+            filter: blur(2px);
+        }
+
         .card-3d {
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            isolation: isolate;
+            overflow: hidden;
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
             transform-style: preserve-3d;
         }
+
+        .card-3d::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0;
+            background: radial-gradient(circle at 90% 0%, rgba(245, 158, 11, 0.13), transparent 37%);
+            transition: opacity 0.45s ease;
+        }
+
         .card-3d:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(-1deg);
-            box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.15), 0 10px 15px -5px rgba(217, 119, 6, 0.1);
+            transform: translateY(-10px) rotateX(2deg) rotateY(-1deg);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 26px 38px -18px rgba(15, 23, 42, 0.25), 0 14px 24px -13px rgba(217, 119, 6, 0.28);
+        }
+
+        .card-3d:hover::before {
+            opacity: 1;
+        }
+
+        .card-3d:hover .icon-3d-well {
+            transform: translateY(-5px) rotate(-4deg) scale(1.06);
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+                inset -4px -5px 10px rgba(160, 95, 0, 0.18),
+                0 20px 28px -12px rgba(180, 113, 8, 0.62);
         }
         .hero-3d-card {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 35px 75px -25px rgba(0, 0, 0, 0.76), 0 0 0 1px rgba(245, 158, 11, 0.08);
             transform: perspective(1000px) rotateY(-6deg) rotateX(3deg);
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease;
         }
+
         .hero-3d-card:hover {
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-8px);
+            box-shadow: 0 42px 90px -24px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.1);
         }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-visual::before,
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+
+        .hero-visual::before {
+            width: 5rem;
+            height: 5rem;
+            top: -1.5rem;
+            right: -1.3rem;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 238, 173, 0.8), rgba(245, 158, 11, 0.08) 65%, transparent 70%);
+            animation: floatOrb 5s ease-in-out infinite;
+        }
+
+        .hero-visual::after {
+            width: 3rem;
+            height: 3rem;
+            bottom: 2rem;
+            left: -1.5rem;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.42), transparent 70%);
+            animation: floatOrb 6s ease-in-out -2s infinite reverse;
+        }
+
+        #main-landing-page > section:first-of-type {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            background-position: center;
+        }
+
+        #main-landing-page > section:first-of-type h1 {
+            letter-spacing: -0.045em;
+            text-wrap: balance;
+        }
+
+        #main-landing-page > section:first-of-type p {
+            text-wrap: pretty;
+        }
+
+        #main-landing-page > section:nth-of-type(2) {
+            background:
+                radial-gradient(circle at 5% 20%, rgba(245, 158, 11, 0.08), transparent 18rem),
+                linear-gradient(180deg, #fbfaf6 0%, #f5f7fb 100%);
+        }
+
+        #main-landing-page > section:nth-of-type(3) {
+            background:
+                radial-gradient(circle at 90% 10%, rgba(245, 158, 11, 0.05), transparent 22rem),
+                #fff;
+        }
+
+        #insights article {
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        #insights article:hover {
+            transform: translateY(-7px);
+            border-color: rgba(245, 158, 11, 0.38);
+            box-shadow: 0 22px 38px -24px rgba(15, 23, 42, 0.32);
+        }
+
+        #insights article img {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+        }
+
+        #insights article:hover img {
+            transform: scale(1.07) rotate(1deg);
+            filter: saturate(1.18) contrast(1.04);
+        }
+
+        #search-page-view {
+            background:
+                radial-gradient(circle at 10% 0%, rgba(245, 158, 11, 0.09), transparent 28rem),
+                radial-gradient(circle at 90% 70%, rgba(37, 99, 235, 0.07), transparent 30rem),
+                #090d16 !important;
+        }
+
+        #search-page-view input:focus {
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1), 0 12px 30px -20px rgba(245, 158, 11, 0.7);
+        }
+
+        #document-content-area {
+            box-shadow: 0 32px 80px -35px rgba(0, 0, 0, 0.8);
+        }
+
+        footer {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 12% 0%, rgba(245, 158, 11, 0.15), transparent 22rem),
+                radial-gradient(circle at 92% 80%, rgba(37, 99, 235, 0.12), transparent 24rem),
+                linear-gradient(145deg, #070c16 0%, #0d182b 58%, #09111f 100%) !important;
+            border-top: 1px solid rgba(245, 158, 11, 0.28) !important;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.38;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 88%);
+        }
+
+        footer::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 22rem;
+            height: 22rem;
+            top: -13rem;
+            right: 12%;
+            border-radius: 50%;
+            border: 1px solid rgba(245, 158, 11, 0.12);
+            box-shadow: 0 0 0 2rem rgba(245, 158, 11, 0.025), 0 0 0 4rem rgba(245, 158, 11, 0.018);
+        }
+
+        .footer-grid {
+            position: relative;
+        }
+
+        .footer-brand {
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .footer-brand::after {
+            content: "";
+            position: absolute;
+            top: 0.25rem;
+            right: 0;
+            width: 1px;
+            height: calc(100% - 0.25rem);
+            background: linear-gradient(to bottom, rgba(245, 158, 11, 0.55), transparent);
+        }
+
+        .footer-brand > span {
+            letter-spacing: 0.08em;
+            background: linear-gradient(90deg, #fff, #f8d78a 70%, #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-contact {
+            width: fit-content;
+            padding: 0.5rem 0.7rem;
+            margin-left: -0.7rem;
+            border-radius: 0.75rem;
+            text-decoration: none !important;
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-contact:hover {
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 24px -18px rgba(245, 158, 11, 0.9);
+            transform: translateX(4px);
+        }
+
+        .footer-contact i {
+            width: 1.4rem !important;
+            height: 1.4rem;
+            margin-right: 0.5rem !important;
+            border-radius: 0.45rem;
+            color: #f5b83e;
+        }
+
+        .footer-socials {
+            gap: 0.65rem !important;
+            padding-top: 1rem !important;
+        }
+
+        .footer-social {
+            position: relative;
+            width: 2.65rem !important;
+            height: 2.65rem !important;
+            border-radius: 0.85rem !important;
+            background: linear-gradient(145deg, rgba(36, 52, 76, 0.95), rgba(9, 17, 31, 0.95)) !important;
+            border: 1px solid rgba(148, 163, 184, 0.28) !important;
+            box-shadow:
+                inset 1px 1px 0 rgba(255,255,255,0.09),
+                inset -4px -5px 12px rgba(0,0,0,0.28),
+                0 12px 22px -16px rgba(0,0,0,0.9);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease !important;
+        }
+
+        .footer-social::before {
+            content: "";
+            position: absolute;
+            inset: 0.22rem;
+            border-radius: 0.65rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            pointer-events: none;
+        }
+
+        .footer-social:hover {
+            color: #fff4c4 !important;
+            border-color: rgba(245, 158, 11, 0.75) !important;
+            transform: translateY(-7px) rotate(-4deg) scale(1.08);
+            box-shadow:
+                inset 1px 1px 0 rgba(255,255,255,0.12),
+                0 18px 28px -16px rgba(245, 158, 11, 0.5),
+                0 0 20px rgba(245, 158, 11, 0.12);
+        }
+
+        footer .footer-social:hover {
+            transform: translateY(-7px) rotate(-4deg) scale(1.08);
+        }
+
+        .footer-social i {
+            font-size: 1.05rem;
+        }
+
+        .footer-heading {
+            position: relative;
+            width: fit-content;
+            padding-bottom: 0.7rem;
+            margin-bottom: 0.8rem !important;
+            letter-spacing: 0.16em;
+        }
+
+        .footer-heading::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 2.1rem;
+            height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #f5a524, transparent);
+        }
+
+        .footer-list {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            width: fit-content;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0;
+            color: #94a3b8;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .footer-link::before {
+            content: "↗";
+            color: #f5a524;
+            opacity: 0;
+            transform: translateX(-0.35rem);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .footer-link:hover {
+            color: #fff4c4 !important;
+            transform: translateX(0.25rem);
+        }
+
+        .footer-link:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .footer-bottom {
+            position: relative;
+            border-top-color: rgba(148, 163, 184, 0.18) !important;
+        }
+
+        .footer-bottom p:last-child {
+            color: #64748b;
+            letter-spacing: 0.05em;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(0, -12px, 0) scale(1.08); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-110%); }
+            100% { transform: translateX(110%); }
+        }
+
+        .shine-on-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-on-hover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 45%;
+            transform: translateX(-110%) skewX(-18deg);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+            pointer-events: none;
+        }
+
+        .shine-on-hover:hover::after {
+            animation: shimmer 0.8s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-3d-card {
+                transform: none;
+            }
+
+            .hero-3d-card:hover {
+                transform: translateY(-5px);
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            .footer-brand {
+                padding-right: 0;
+                padding-bottom: 1.5rem;
+            }
+
+            .footer-brand::after {
+                top: auto;
+                right: auto;
+                bottom: 0;
+                width: 4rem;
+                height: 1px;
+                background: linear-gradient(90deg, rgba(245, 158, 11, 0.55), transparent);
+            }
+        }
+
         .glass-panel {
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px);
@@ -73,13 +622,14 @@
     </style>
 </head>
 <body class="bg-slateBg text-slate-800 font-sans antialiased selection:bg-gold-500 selection:text-white">
+    <div id="scroll-progress" aria-hidden="true"></div>
 
     <div id="main-landing-page">
-        <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
+        <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 site-header">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <a href="#" class="flex items-center space-x-3 group">
                     <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-navy-800 shadow-lg shadow-gold-600/30 group-hover:scale-105 transition-transform border border-gold-500/30">
-                        <img id="custom-logo" src="Eyasu.png" alt="Iyasu Andualem Logo" class="w-full h-full object-cover">
+                        <img id="custom-logo" src="Eyasu.png" alt="Iyasu Andualem Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.classList.add('logo-fallback');">
                     </div>
                     <div>
                         <span class="block text-white font-extrabold text-lg tracking-tight leading-none">IYASU ANDUALEM</span>
@@ -95,14 +645,14 @@
                 </nav>
 
                 <div class="hidden sm:flex items-center space-x-4">
-                    <button onclick="openSearchPage()" class="bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-gold-600/20 hover:from-gold-600 hover:to-gold-700 hover:text-white transition-all transform active:scale-95 text-sm">
+                     <button onclick="openSearchPage()" class="shine-on-hover bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-gold-600/20 hover:from-gold-600 hover:to-gold-700 hover:text-white transition-all transform active:scale-95 text-sm">
                         Access Portal
                     </button>
                 </div>
             </div>
         </header>
 
-        <section class="relative bg-navy-900 text-white overflow-hidden py-20 lg:py-28 border-b border-slate-800">
+        <section class="relative bg-navy-900 text-white overflow-hidden py-20 lg:py-28 border-b border-slate-800 reveal">
             <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 rounded-full bg-gold-600/10 blur-3xl pointer-events-none"></div>
             <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
 
@@ -121,7 +671,7 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <a href="#store" class="w-full sm:w-auto bg-navy-800 hover:bg-navy-800/80 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 hover:border-gold-500/50 transition-all flex items-center justify-center gap-3">
+                            <a href="#store" class="shine-on-hover w-full sm:w-auto bg-navy-800 hover:bg-navy-800/80 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 hover:border-gold-500/50 transition-all flex items-center justify-center gap-3">
                                 <i class="fa-solid fa-folder-open text-gold-500"></i>
                                 <span>Browse Formats Store</span>
                             </a>
@@ -142,7 +692,7 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-5 flex justify-center">
+                    <div class="lg:col-span-5 flex justify-center hero-visual">
                         <div class="relative w-full max-w-md hero-3d-card rounded-2xl bg-navy-800 border border-slate-700/80 p-6 shadow-2xl">
                             <div class="flex items-center justify-between pb-4 border-b border-slate-700">
                                 <div class="flex items-center space-x-2">
@@ -168,7 +718,7 @@
                                 </div>
                                 <div class="flex gap-2">
                                     <input id="hero-search-input" type="text" oninput="executeDocumentSearch()" placeholder="የወንጀል ሕግ / የፍትሐብሔር..." class="bg-navy-950 border border-slate-700 text-xs text-slate-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:border-gold-500">
-                                    <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-navy-950 px-3 py-2 rounded-lg font-bold text-xs transition-colors"><i class="fa-solid fa-search"></i></button>
+                            <button type="submit" class="shine-on-hover bg-gold-500 hover:bg-gold-600 text-navy-950 px-3 py-2 rounded-lg font-bold text-xs transition-colors"><i class="fa-solid fa-search"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -187,9 +737,9 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="card-3d bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between">
+                    <div class="card-3d reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between">
                         <div>
-                            <div class="w-14 h-14 rounded-xl bg-amber-100 text-gold-600 flex items-center justify-center text-2xl font-bold mb-6 shadow-inner">
+                                <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
                                 <i class="fa-solid fa-calendar-check"></i>
                             </div>
                             <h3 class="text-xl font-bold text-navy-900 mb-3">Daily Legal Advice Subscriptions</h3>
@@ -204,9 +754,9 @@
                         </div>
                     </div>
 
-                    <div class="card-3d bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between">
+                    <div class="card-3d reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between">
                         <div>
-                            <div class="w-14 h-14 rounded-xl bg-amber-100 text-gold-600 flex items-center justify-center text-2xl font-bold mb-6 shadow-inner">
+                                <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
                                 <i class="fa-solid fa-file-signature"></i>
                             </div>
                             <h3 class="text-xl font-bold text-navy-900 mb-3">Verified Legal Formats Store</h3>
@@ -232,7 +782,7 @@
                         <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">Digital Products</h2>
                         <h3 class="text-3xl font-extrabold text-navy-900">Featured Legal Formats</h3>
                     </div>
-                    <a href="#" class="mt-4 md:mt-0 text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors flex items-center gap-1">
+                            <a href="#" class="shine-on-hover mt-4 md:mt-0 text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors flex items-center gap-1">
                         View All 50+ Templates <i class="fa-solid fa-chevron-right text-xs"></i>
                     </a>
                 </div>
@@ -246,7 +796,7 @@
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-8">
-                        <article class="flex flex-col sm:flex-row gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                        <article class="reveal flex flex-col sm:flex-row gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-200">
                             <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=400&q=80" alt="Legal Analysis" class="w-full sm:w-36 h-36 object-cover rounded-xl shadow">
                             <div>
                                 <div class="text-xs text-gold-600 font-bold mb-1">Commercial Law Update</div>
@@ -258,7 +808,7 @@
                             </div>
                         </article>
 
-                        <article class="flex flex-col sm:flex-row gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                        <article class="reveal flex flex-col sm:flex-row gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-200">
                             <img src="https://images.unsplash.com/photo-1436450412740-6b988f486c6b?auto=format&fit=crop&w=400&q=80" alt="Cassation Bench Analysis" class="w-full sm:w-36 h-36 object-cover rounded-xl shadow">
                             <div>
                                 <div class="text-xs text-gold-600 font-bold mb-1">Cassation Analysis</div>
@@ -276,55 +826,55 @@
         </section>
 
         <footer class="bg-navy-900 text-slate-400 py-12 border-t border-slate-800 text-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div class="md:col-span-2 space-y-3">
+            <div class="footer-grid max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="footer-brand md:col-span-2 space-y-3">
                     <span class="text-white font-bold text-lg block mb-2">IYASU ANDUALEM LAW OFFICE</span>
                     <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4">
                         Providing top-tier legal advocacy and digital resources tailored to modern legal challenges across Ethiopia.
                     </p>
                     
                     <div class="space-y-2 text-xs">
-                        <a href="https://maps.google.com/?q=Addis+Ababa,+Lideta+subcity" target="_blank" rel="noopener noreferrer" class="flex items-center text-gold-500 hover:underline">
+                         <a href="https://maps.google.com/?q=Addis+Ababa,+Lideta+subcity" target="_blank" rel="noopener noreferrer" class="footer-contact flex items-center text-gold-500 hover:underline">
                             <i class="fa-solid fa-location-dot w-5 text-center mr-2"></i>
                             <span>Addis Ababa, Lideta subcity</span>
                         </a>
-                        <a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="flex items-center text-slate-300 hover:text-gold-500 transition-colors">
+                         <a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="footer-contact flex items-center text-slate-300 hover:text-gold-500 transition-colors">
                             <i class="fa-solid fa-phone w-5 text-center mr-2 text-gold-500"></i>
                             <span>0922930707</span>
                         </a>
                     </div>
 
-                    <div class="flex items-center space-x-3 pt-2">
-                        <a href="https://t.me/+WgbQCVkaR48xNTVk" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Telegram">
+                     <div class="footer-socials flex items-center space-x-3 pt-2">
+                         <a href="https://t.me/+WgbQCVkaR48xNTVk" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Telegram" aria-label="Telegram">
                             <i class="fa-brands fa-telegram"></i>
                         </a>
-                        <a href="https://www.facebook.com/share/14mWyjmfbPp/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Facebook">
+                         <a href="https://www.facebook.com/share/14mWyjmfbPp/" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Facebook" aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/iyasu-andualem-tekalegn-2b92a23b9?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="LinkedIn">
+                         <a href="https://www.linkedin.com/in/iyasu-andualem-tekalegn-2b92a23b9?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="LinkedIn" aria-label="LinkedIn">
                             <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
-                <div>
-                    <h5 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">Navigation</h5>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#" class="hover:text-gold-500 transition-colors">Home</a></li>
-                        <li><a href="javascript:void(0)" onclick="openSearchPage()" class="hover:text-gold-500 transition-colors">Cassation Decisions Finder</a></li>
-                        <li><a href="#store" class="hover:text-gold-500 transition-colors">Legal Formats Store</a></li>
-                        <li><a href="#insights" class="hover:text-gold-500 transition-colors">Daily Legal Commentary</a></li>
+                <div class="footer-links">
+                    <h5 class="footer-heading text-white font-semibold text-xs uppercase tracking-wider mb-3">Navigation</h5>
+                    <ul class="footer-list space-y-2 text-xs">
+                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Home</a></li>
+                        <li><a href="javascript:void(0)" onclick="openSearchPage()" class="footer-link hover:text-gold-500 transition-colors">Cassation Decisions Finder</a></li>
+                        <li><a href="#store" class="footer-link hover:text-gold-500 transition-colors">Legal Formats Store</a></li>
+                        <li><a href="#insights" class="footer-link hover:text-gold-500 transition-colors">Daily Legal Commentary</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h5 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">Legal & Support</h5>
-                    <ul class="space-y-2 text-xs">
-                        <li><a href="#" class="hover:text-gold-500 transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-gold-500 transition-colors">Privacy Policy</a></li>
-                        <li><a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="hover:text-gold-500 transition-colors">Contact Counsel</a></li>
+                <div class="footer-links">
+                    <h5 class="footer-heading text-white font-semibold text-xs uppercase tracking-wider mb-3">Legal & Support</h5>
+                    <ul class="footer-list space-y-2 text-xs">
+                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Privacy Policy</a></li>
+                        <li><a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="footer-link hover:text-gold-500 transition-colors">Contact Counsel</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-xs text-center md:flex md:justify-between">
+            <div class="footer-bottom max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-xs text-center md:flex md:justify-between">
                 <p>© 2026 Iyasu Andualem Law Office. All rights reserved.</p>
                 <p class="mt-2 md:mt-0 text-slate-500">Modern Legal Tech / Ethiopian Practice Portal</p>
             </div>
@@ -367,6 +917,36 @@
     <script src="document-data.js"></script>
 
     <script>
+        (function enhancePageMotion() {
+            const progress = document.getElementById('scroll-progress');
+            const siteHeader = document.querySelector('.site-header');
+            const reveals = document.querySelectorAll('.reveal');
+
+            function updateScrollUI() {
+                const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                const amount = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+                if (progress) progress.style.width = `${Math.min(100, Math.max(0, amount))}%`;
+                if (siteHeader) siteHeader.classList.toggle('scrolled', window.scrollY > 16);
+            }
+
+            window.addEventListener('scroll', updateScrollUI, { passive: true });
+            updateScrollUI();
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, currentObserver) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            currentObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+                reveals.forEach((element) => observer.observe(element));
+            } else {
+                reveals.forEach((element) => element.classList.add('is-visible'));
+            }
+        })();
+
         function handlePhoneClick(event, phoneNumber) {
             try {
                 window.location.href = "tel:" + phoneNumber;

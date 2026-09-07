@@ -140,7 +140,9 @@
         button:hover i[class^="fa-"],
         button:hover i[class*=" fa-"],
         .card-3d:hover i[class^="fa-"],
-        .card-3d:hover i[class*=" fa-"] {
+        .card-3d:hover i[class*=" fa-"],
+        .format-item-3d:hover i[class^="fa-"],
+        .format-item-3d:hover i[class*=" fa-"] {
             transform: translateY(-3px) rotate(-5deg) scale(1.13);
             filter: drop-shadow(0 7px 5px rgba(15, 23, 42, 0.22));
             text-shadow: 0.07em 0.09em 0 rgba(0, 0, 0, 0.25);
@@ -153,6 +155,7 @@
             font-size: 0.78rem;
             letter-spacing: -0.08em;
         }
+        
         .icon-3d-well {
             position: relative;
             isolation: isolate;
@@ -222,6 +225,80 @@
                 inset -4px -5px 10px rgba(160, 95, 0, 0.18),
                 0 20px 28px -12px rgba(180, 113, 8, 0.62);
         }
+
+        /* Small 3D Div Styling for Format Items */
+        .format-item-3d {
+            position: relative;
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(245, 158, 11, 0.18);
+            border-radius: 0.85rem;
+            padding: 1rem;
+            transform-style: preserve-3d;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.08),
+                0 10px 20px -10px rgba(0, 0, 0, 0.5),
+                0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .format-item-3d:hover {
+            transform: translateY(-5px) rotateX(4deg) scale(1.02);
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.15),
+                0 18px 30px -12px rgba(245, 158, 11, 0.25),
+                0 8px 12px -4px rgba(0, 0, 0, 0.4);
+        }
+
+        .format-item-3d .format-icon-well {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f5a524;
+            flex-shrink: 0;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .format-item-3d:hover .format-icon-well {
+            background: rgba(245, 158, 11, 0.25);
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* Circular Floating Buy Button Styling */
+        .buy-circle-btn {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: #0F172A;
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .buy-circle-btn:hover {
+            transform: scale(1.15);
+            background: linear-gradient(135deg, #FBBF24, #F59E0B);
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.6);
+        }
+
         .hero-3d-card {
             box-shadow: 0 35px 75px -25px rgba(0, 0, 0, 0.76), 0 0 0 1px rgba(245, 158, 11, 0.08);
             transform: perspective(1000px) rotateY(-6deg) rotateX(3deg);
@@ -312,14 +389,14 @@
             filter: saturate(1.18) contrast(1.04);
         }
 
-        #search-page-view {
+        #search-page-view, #store-page-view {
             background:
                 radial-gradient(circle at 10% 0%, rgba(245, 158, 11, 0.09), transparent 28rem),
                 radial-gradient(circle at 90% 70%, rgba(37, 99, 235, 0.07), transparent 30rem),
                 #090d16 !important;
         }
 
-        #search-page-view input:focus {
+        #search-page-view input:focus, #format-search-input:focus {
             box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1), 0 12px 30px -20px rgba(245, 158, 11, 0.7);
         }
 
@@ -640,7 +717,7 @@
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                     <a href="#" class="text-white font-semibold flex items-center gap-1.5"><i class="fa-solid fa-house text-xs text-gold-500"></i> Home</a>
                     <a href="javascript:void(0)" onclick="openSearchPage()" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gavel text-xs"></i> Cassation Finder</a>
-                    <a href="#store" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-xs"></i> Formats Store</a>
+                    <a href="javascript:void(0)" onclick="openStorePage()" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-xs"></i> Formats Store</a>
                     <a href="#insights" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-newspaper text-xs"></i> Insights</a>
                 </nav>
 
@@ -671,10 +748,10 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <a href="#store" class="shine-on-hover w-full sm:w-auto bg-navy-800 hover:bg-navy-800/80 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 hover:border-gold-500/50 transition-all flex items-center justify-center gap-3">
+                            <button onclick="openStorePage()" class="shine-on-hover w-full sm:w-auto bg-navy-800 hover:bg-navy-800/80 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 hover:border-gold-500/50 transition-all flex items-center justify-center gap-3">
                                 <i class="fa-solid fa-folder-open text-gold-500"></i>
                                 <span>Browse Formats Store</span>
-                            </a>
+                            </button>
                         </div>
                         <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-800/80 text-center lg:text-left">
                             <div>
@@ -718,7 +795,7 @@
                                 </div>
                                 <div class="flex gap-2">
                                     <input id="hero-search-input" type="text" oninput="executeDocumentSearch()" placeholder="የወንጀል ሕግ / የፍትሐብሔር..." class="bg-navy-950 border border-slate-700 text-xs text-slate-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:border-gold-500">
-                            <button type="submit" class="shine-on-hover bg-gold-500 hover:bg-gold-600 text-navy-950 px-3 py-2 rounded-lg font-bold text-xs transition-colors"><i class="fa-solid fa-search"></i></button>
+                                    <button type="submit" class="shine-on-hover bg-gold-500 hover:bg-gold-600 text-navy-950 px-3 py-2 rounded-lg font-bold text-xs transition-colors"><i class="fa-solid fa-search"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -739,7 +816,7 @@
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="card-3d reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between">
                         <div>
-                                <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
+                            <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
                                 <i class="fa-solid fa-calendar-check"></i>
                             </div>
                             <h3 class="text-xl font-bold text-navy-900 mb-3">Daily Legal Advice Subscriptions</h3>
@@ -754,9 +831,9 @@
                         </div>
                     </div>
 
-                    <div class="card-3d reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between">
+                    <div onclick="openStorePage()" class="card-3d reveal bg-white rounded-2xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between cursor-pointer">
                         <div>
-                                <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
+                            <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
                                 <i class="fa-solid fa-file-signature"></i>
                             </div>
                             <h3 class="text-xl font-bold text-navy-900 mb-3">Verified Legal Formats Store</h3>
@@ -765,29 +842,33 @@
                             </p>
                         </div>
                         <div>
-                            <a href="#store" class="inline-flex items-center text-sm font-bold text-gold-600 hover:text-gold-700 group">
+                            <button class="inline-flex items-center text-sm font-bold text-gold-600 hover:text-gold-700 group">
                                 Browse Template Catalog <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="store" class="py-20 bg-white border-t border-slate-200">
+        <!-- CLICKABLE SECTION ROUTED TO LEGAL FORMAT STORE PAGE -->
+        <section id="store" onclick="openStorePage()" class="py-20 bg-white border-t border-slate-200 cursor-pointer hover:bg-amber-50/20 transition-colors">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
                     <div>
-                        <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">Digital Products</h2>
-                        <h3 class="text-3xl font-extrabold text-navy-900">Featured Legal Formats</h3>
+                        <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">DIGITAL PRODUCTS</h2>
+                        <h3 class="text-3xl font-extrabold text-navy-900 flex items-center gap-3">
+                            Featured Legal Formats 
+                            <span class="text-xs bg-gold-500 text-navy-950 font-bold px-2.5 py-1 rounded-full uppercase tracking-normal">Click to Open Store</span>
+                        </h3>
                     </div>
-                            <a href="#" class="shine-on-hover mt-4 md:mt-0 text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors flex items-center gap-1">
-                        View All 50+ Templates <i class="fa-solid fa-chevron-right text-xs"></i>
-                    </a>
+                    <button class="shine-on-hover mt-4 md:mt-0 text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors flex items-center gap-1">
+                        View All 90+ Templates <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
                 </div>
 
-                <div id="insights" class="pt-8 border-t border-slate-200">
+                <div id="insights" class="pt-8 border-t border-slate-200" onclick="event.stopPropagation()">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
                         <div>
                             <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">Daily Commentary</h2>
@@ -848,7 +929,7 @@
                          <a href="https://t.me/+WgbQCVkaR48xNTVk" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Telegram" aria-label="Telegram">
                             <i class="fa-brands fa-telegram"></i>
                         </a>
-                         <a href="https://www.facebook.com/share/18KcpzyPCg/" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Facebook" aria-label="Facebook">
+                         <a href="https://www.facebook.com/share/14mWyjmfbPp/" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="Facebook" aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
                          <a href="https://www.linkedin.com/in/iyasu-andualem-tekalegn-2b92a23b9?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="footer-social w-8 h-8 rounded-full bg-navy-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-gold-500 hover:border-gold-500 transition-all" title="LinkedIn" aria-label="LinkedIn">
@@ -861,7 +942,7 @@
                     <ul class="footer-list space-y-2 text-xs">
                         <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Home</a></li>
                         <li><a href="javascript:void(0)" onclick="openSearchPage()" class="footer-link hover:text-gold-500 transition-colors">Cassation Decisions Finder</a></li>
-                        <li><a href="#store" class="footer-link hover:text-gold-500 transition-colors">Legal Formats Store</a></li>
+                        <li><a href="javascript:void(0)" onclick="openStorePage()" class="footer-link hover:text-gold-500 transition-colors">Legal Format Store</a></li>
                         <li><a href="#insights" class="footer-link hover:text-gold-500 transition-colors">Daily Legal Commentary</a></li>
                     </ul>
                 </div>
@@ -879,6 +960,50 @@
                 <p class="mt-2 md:mt-0 text-slate-500">Modern Legal Tech / Ethiopian Practice Portal</p>
             </div>
         </footer>
+    </div>
+
+    <!-- NEW PAGE VIEW: LEGAL FORMAT STORE -->
+    <div id="store-page-view" class="hidden min-h-screen bg-navy-950 text-slate-100">
+        <header class="bg-navy-900 border-b border-slate-800 sticky top-0 z-50 p-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <button onclick="closeStorePage()" class="text-gold-500 font-bold text-sm flex items-center gap-2 hover:underline">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Main Site
+                </button>
+                <div class="text-sm font-semibold text-slate-300">Iyasu Andualem Law Office</div>
+            </div>
+        </header>
+
+        <div class="max-w-7xl mx-auto p-6">
+            <div class="bg-navy-900 border border-slate-800 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- FLEXIBLE RESPONSIVE CONTAINER (FIXES OVERLAP) -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Legal Format Store</h1>
+                    
+                    <!-- COMPACT & CLEAN PAGE TOGGLE SWITCHER -->
+                    <div class="inline-flex items-center gap-1 bg-navy-950/90 p-1 rounded-lg border border-gold-500/30 shadow-md self-start sm:self-auto">
+                        <button id="btn-page-1" onclick="switchPage(1)" class="px-2.5 py-1 rounded-md text-[11px] font-bold transition-all bg-gold-500 text-navy-950 shadow">
+                            Page 1
+                        </button>
+                        <button id="btn-page-2" onclick="switchPage(2)" class="px-2.5 py-1 rounded-md text-[11px] font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-800">
+                            Page 2
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mb-6">Explore and download standardized legal formats and pleadings according to current Ethiopian laws. Organized across key procedural and substantive categories.</p>
+
+                <div class="relative max-w-xl">
+                    <input type="text" id="format-search-input" onkeyup="filterFormats()" placeholder="Search legal format (e.g., የሽያጭ ውል, የውርስ, ስጦታ)..." class="bg-navy-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white w-full focus:outline-none focus:border-gold-500 pl-10">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
+                </div>
+            </div>
+
+            <div id="formats-store-container" class="space-y-10">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </div>
     </div>
 
     <div id="search-page-view" class="hidden min-h-screen bg-navy-950 text-slate-100">
@@ -912,11 +1037,446 @@
         </div>
     </div>
 
-    <!-- Auto-generated page-by-page text index of the PDF (document-data.js).
-         Keep this file, index.html, and the PDF itself in the same folder. -->
+    <!-- WHATSAPP BUY MODAL POPUP -->
+    <div id="buyModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm hidden p-4">
+        <div class="relative bg-navy-900 border border-gold-500/40 rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl transform transition-all scale-100">
+            <!-- Close Button -->
+            <button onclick="closeBuyModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-800 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- WhatsApp Logo Upper Center -->
+            <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-500 text-3xl shadow-lg">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            
+            <!-- Phrase -->
+            <p id="buyModalText" class="text-slate-200 text-sm leading-relaxed font-medium mb-6">
+                መግዛት የሚፈልጉትን የፍትሐ ብሔር ክስ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ
+            </p>
+            
+            <!-- WhatsApp Account Button -->
+            <a href="https://wa.me/251922930707" target="_blank" rel="noopener noreferrer" class="shine-on-hover inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl w-full text-sm shadow-lg shadow-emerald-600/30 transition-all">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>+251922930707</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Auto-generated page-by-page text index of the PDF (document-data.js). -->
     <script src="document-data.js"></script>
 
     <script>
+        let currentPage = 1;
+
+        // Modal functions
+        function openBuyModal() {
+            const modalText = document.getElementById('buyModalText');
+            if (currentPage === 2) {
+                modalText.innerText = "መግዛት የሚፈልጉትን የወንጀል ኬዝ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ";
+            } else {
+                modalText.innerText = "መግዛት የሚፈልጉትን የፍትሐ ብሔር ክስ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ";
+            }
+            document.getElementById('buyModal').classList.remove('hidden');
+        }
+
+        function closeBuyModal() {
+            document.getElementById('buyModal').classList.add('hidden');
+        }
+
+        // Store Data Extracted from Page 1 (Civil Claims)
+        const legalFormatsData = [
+            {
+                section: "Section I. ከውል የሚመጡ ክሶች (Contractual Claims)",
+                items: [
+                    "የሽያጭ ውል ማፈረስ ወይም የማስገደድ ክስ",
+                    "ያልተከፈለ የብድር ገንዘብ የማስመለስ ክስ",
+                    "የቤት ወይም የሕንፃ ኪራይ ውል ማቋረጥና የማስለቀቅ ክስ",
+                    "ያልተከፈለ የቤት/ንብረት ኪራይ ውል ካሳ ክስ",
+                    "የሥራ ተቋራጭነት (ኮንስትራክሽን) ውል አለመፈጸም ክስ",
+                    "የውክልና ሥልጣን መሻር ወይም የውክልና አላግባብ መጠቀም ክስ",
+                    "የሥራና ሠራተኛ ውል መቋረጥ እና የካሳ ክስ",
+                    "የአገልግሎት ክፍያ ያልተፈጸመበት የውል ክስ",
+                    "የቁሳቁስና ዕቃ አቅርቦት ውል አለመከበር ክስ",
+                    "የኢንሹራንስ (የመድን) ካሳ ክፍያ ጥያቄ ክስ",
+                    "የባንክ ብድርና የሐዋላ (Negotiable Instruments) ክስ",
+                    "የቼክ መክሸፍ/ያለበቂ ገንዘብ የተጻፈ ቼክ የገንዘብ ማስመለስ ክስ",
+                    "የመኪና/የተሽከርካሪ ሽያጭ ውል ማፍረስ ክስ",
+                    "የቤት አከራይና ተከራይ የጥገና ውል አለመከበር ክስ",
+                    "የዕዳ ማካካሻ (Set-off) ጥያቄ ክስ",
+                    "የውል ቅጣት (Penalty clause) ክፍያ ክስ",
+                    "የመያዣ (Mortgage) ንብረት በሐራጅ የመሸጥ/የማስከበር ክስ",
+                    "የመንግሥትና የግል አስተዳደራዊ ውል (Administrative Contract) ክስ",
+                    "የሽሙጥ/የሐሰት ውል (Simulated Contract) ይፍረስልኝ ክስ",
+                    "በግዳጅ/በማታለል የተፈረመ ውል ይፍረስልኝ ክስ"
+                ]
+            },
+            {
+                section: "Section II. ከውል ውጭ ከሚደርስ ጉዳት የሚመጡ ክሶች (Extra-Contractual / Tort Claims)",
+                items: [
+                    "በትራፊክ/የተሽከርካሪ አደጋ የጉዳት ካሳ ክስ",
+                    "የሕክምና ጥፋት (Medical Malpractice) የካሳ ክስ",
+                    "የስም ማጥፋት (Defamation) እና የክብር መነካት ካሳ ክስ",
+                    "በህንፃ ውድቀት ወይም ግንባታ ምክንያት በጎረቤት ላይ የደረሰ ጉዳት ካሳ ክስ",
+                    "በእንስሳት/የቤት እንስሳት ምክንያት የደረሰ ጉዳት ካሳ ክስ",
+                    "የአካል ጉዳት (Personal Injury) የካሳ ክስ",
+                    "ለአግባባብ ሀብት ማከማቸት/ያልተገቢ ብልጽግና (Unjust Enrichment) ክስ",
+                    "የሞራል ጉዳት (Moral Damage) ካሳ ክስ",
+                    "በሕፃናት/በልጆች ጥፋት በወላጆች ላይ የሚቀርብ የካሳ ክስ",
+                    "በሠራተኛ ጥፋት በአሠሪ ላይ የሚቀርብ የካሳ ክስ (Vicarious Liability)",
+                    "በሕገ-ወጥ መንገድ ንብረት ይዞ ማቆየት (Conversion) የካሳ ክስ",
+                    "የተሳሳተ ወይም ሀሰተኛ መረጃ በመስጠት የደረሰ የኢኮኖሚ ጉዳት ካሳ ክስ",
+                    "በሕገ-ወጥ መንገድ ንብረት ማገድ/መያዝ ካሳ ክስ",
+                    "የውኃ ፍሰት ወይም የተፈጥሮ መንገድ በመዝጋት የደረሰ ጉዳት ካሳ ክስ",
+                    "የአካባቢ ብክለትና የድምፅ ረብሻ የካሳ ክስ"
+                ]
+            },
+            {
+                section: "Section III. የንብረትና የይዞታ ክሶች (Property & Ownership Claims)",
+                items: [
+                    "የማይንቀሳቀስ ንብረት የባለቤትነት መብት ማረጋገጫ ክስ",
+                    "የይዞታ መደፈር እና ይዞታ የማስመለስ ክስ (Possessory Action)",
+                    "የወሰን መከበር (Boundary dispute) ክስ",
+                    "የጋራ ንብረት ክፍፍል ክስ (Partition of Common Property)",
+                    "የመጠቀሚያ መብት (Usufruct) ለማስከበር የሚቀርብ ክስ",
+                    "የአገልግሎት/የመንገድ ማለፊያ መብት (Servitude) ማስከበር ክስ",
+                    "ከቤት ወይም ከቦታ በሕገ-ወጥ መንገድ የተነሳ ሰው ቦታው ይመለስልኝ ክስ",
+                    "የማይንቀሳቀስ ንብረት ካርታ/ሰነድ ይሰረዝልኝ ክስ",
+                    "የተንቀሳቀስ ንብረት ማስመለስ ክስ",
+                    "በይዞታ ላይ የሚደረግ ሕገ-ወጥ ግንባታ እንዲፈርስ የሚቀርብ ክስ",
+                    "በጎረቤት ይዞታ ላይ የተተከለ ዛፍ ወይም ግንባታ እንዲነሳ የሚቀርብ ክስ",
+                    "በይዞታ ባለቤትነትን የማግኘት (Usucaption/Prescription) ክስ",
+                    "የቤት ክፍተት ወይም የጋራ ግንብ ክፍፍል ክስ",
+                    "በንብረት ላይ አግዶ የማቆየት (Retention right) ክስ",
+                    "የቤት ባለቤትነት ስም ዝውውር እንዲፈጸም የሚያስገድድ ክስ"
+                ]
+            },
+            {
+                section: "Section IV. የውርስና የስጦታ ክሶች (Succession & Donation Claims)",
+                items: [
+                    "የወራሽነት መብት ማረጋገጫ ክስ",
+                    "የውርስ ንብረት ክፍፍል ክስ",
+                    "የኑዛዜ ቃል ይፍረስልኝ (Invalidation of Will) ክስ",
+                    "የውርስ ንብረት አጣሪ እንዲሾም የሚቀርብ አቤቱታ",
+                    "በውርስ ንብረት ላይ የተደረገ ሕገ-ወጥ ሽያጭ/ስጦታ ይፍረስልኝ ክስ",
+                    "የወራሽነት መብት መነፈግ (Disinheritance) ይነሳልኝ ክስ",
+                    "የውርስ ንብረት ከዕዳ ነፃ ይሁንልኝ አቤቱታ",
+                    "የስጦታ ውል ይፍረስልኝ (Revocation of Donation) ክስ",
+                    "በውርስ ንብረት ላይ የቀረበ የኑዛዜ አፈጻጸም ማስገደጃ ክስ",
+                    "ያልተካተተ ወራሽ በውርስ ክፍፍል ላይ የሚያቀርበው መቃወሚያ ክስ"
+                ]
+            },
+            {
+                section: "Section V. የቤተሰብ ሕግ ክሶች (Family Law Claims)",
+                items: [
+                    "በስምምነት የሚደረግ የጋብቻ ፍቺ ክስ",
+                    "በፍላጎት (በአንደኛው ወገን ጥያቄ) የሚደረግ የፍቺ ክስ",
+                    "የጋራ ንብረት ክፍፍል ክስ (ከፍቺ በኋላ)",
+                    "የልጆች ቀለብና አስተዳደግ (Child Maintenance) ክፍያ ክስ",
+                    "የልጆች ሞግዚትነትና እንክብካቤ (Child Custody) መብት ክስ",
+                    "የልጆች የማየት/የመጎብኘት መብት ማስከበሪያ ክስ",
+                    "የባል እና ሚስት የጋራ ዕዳ አከፋፈል ክስ",
+                    "የልጅነት አባትነት ማረጋገጫ (Paternity) ክስ",
+                    "የልጅነት አባትነትን የመካድ (Denial of Paternity) ክስ",
+                    "የትዳር አጋር ቀለብ (Spousal Maintenance) ጥያቄ ክስ",
+                    "ከጋብቻ ውጭ የተደረገ አብሮ መኖር የጋራ ንብረት ክፍፍል ክስ",
+                    "የጉዲፈቻ (Adoption) ውል ማረጋገጫ ወይም ማፍረሻ አቤቱታ",
+                    "የሕፃናት ንብረት አስተዳደርና የሞግዚትነት ክስ",
+                    "ጋብቻ ከመመሥረቱ በፊት የተደረገ የሕገ-ወጥ ታጮች ስጦታ ይመለስ ክስ",
+                    "የታጨ ሰው ጋብቻን በመተው የሚቀርብ የጉዳት ካሳ ክስ"
+                ]
+            },
+            {
+                section: "Section VI. የንግድ፣ የድርጅትና የባለቤትነት መብት ክሶች (Commercial & Intellectual Property)",
+                items: [
+                    "የንግድ ማህበር (አክሲዮን/ኃ.የተ.የግ.ማ) አባልነት የመሰረዝ/የማስወጣት ክስ",
+                    "የንግድ ድርጅት ትርፍ ክፍያ (Dividend) ይከፈለኝ ክስ",
+                    "የንግድ ድርጅት መፍረስና ማጣራት (Dissolution & Liquidation) ክስ",
+                    "የንግድ ምልክት (Trade Mark) መብት መደፈርና የካሳ ክስ",
+                    "የፈጠራ መብት (Patent) ጥሰት እና እገዳ ክስ",
+                    "የድርሰትና ተያያዥ መብቶች (Copyright) ጥሰትና ካሳ ክስ",
+                    "ፍትሐዊ ያልሆነ የንግድ ውድድር (Unfair Competition) መከላከያ ክስ",
+                    "የንግድ ስም (Trade Name) አላግባብ መጠቀም እገዳ ክስ",
+                    "የኪሳራ (Bankruptcy/Insolvency) ማወጃ አቤቱታ",
+                    "የንግድ ድርጅት ዳይሬክተሮች ቦርድ ውሳኔ ይፍረስልኝ ክስ"
+                ]
+            },
+            {
+                section: "Section VII. የሥራና የሠራተኛ ክሶች (Labor Claims)",
+                items: [
+                    "ከሥራ ከሕግ ውጭ መባረር (Unlawful Dismissal) የካሳ ክስ",
+                    "ወደ ሥራ ይመለስ (Reinstatement) ጥያቄ ክስ",
+                    "ያልተከፈለ ደመወዝ እና አበል የማስከፈል ክስ",
+                    "የሥራ ስንብት ክፍያ (Severance Pay) እና የአገልግሎት ክፍያ ክስ",
+                    "በሥራ ላይ ለደረሰ ጉዳት/አደጋ የሚጠየቅ የካሳ ክስ",
+                    "የሥራ ልምድ እና የስንብት ሰነድ ይሰጠኝ ክስ",
+                    "ያልተወሰደ ዓመታዊ ዕረፍት ክፍያ ጥያቄ ክስ"
+                ]
+            },
+            {
+                section: "Section VIII. የሥነ-ሥርዓትና የተፋጠነ አቤቱታዎች (Procedural & Accelerated Cases)",
+                items: [
+                    "የእገዳ ትዕዛዝ (Injunction Order) መስጫ አቤቱታ",
+                    "የጊዜያዊ ንብረት መያዝ/ማገድ (Attachment before Judgment) አቤቱታ",
+                    "በፍርድ የተወሰነ ገንዘብ/ንብረት የማስፈጸም (Execution of Judgment) አቤቱታ",
+                    "የስም መለወጥ ወይም ማስተካከያ ጥያቄ አቤቱታ (Accelerated Procedure)",
+                    "የመጥፋት ውሳኔ ማረጋገጫ (Declaration of Absence/Death) አቤቱታ",
+                    "የችሎታ ማጣት/የአእምሮ ሕመምተኛነት ማረጋገጫ አቤቱታ",
+                    "የይለፍ ወረቀት/የውጭ ሀገር ፍርድ እንዲፈጸም (Enforcement of Foreign Judgment) የሚቀርብ አቤቱታ",
+                    "የዕዳ ነፃነት ማረጋገጫ እና የማስ ማስረከቢያ አቤቱታ"
+                ]
+            }
+        ];
+
+        // Store Data Extracted from Attached Document (Page 2: Criminal Cases)
+        const legalFormatsDataPage2 = [
+            {
+                section: "Section I. በሰው ሕይወት፣ አካል እና ጤና ላይ የሚፈጸሙ ወንጀሎች (Crimes Against Person & Health)",
+                items: [
+                    "ከባድ የሰው መግደል ወንጀል (Premeditated Murder)",
+                    "በልዩ ሁኔታ የሚፈጸም የሰው መግደል ወንጀል (Aggravated Homicide)",
+                    "በቸልተኝነት የሰው ሕይወት ማጠፋት (Negligent Homicide)",
+                    "የሰው መግደል ሙከራ (Attempted Murder)",
+                    "ከባድ የአካል ጉዳት ማድረስ (Grievous Bodily Injury)",
+                    "ቀሊል የአካል ጉዳት ማድረስ (Simple Bodily Injury)",
+                    "በቸልተኝነት የአካል ጉዳት ማድረስ (Negligent Injury)",
+                    "የሕፃናት ግድያ ወይም ጥልት (Infanticide/Abandonment)",
+                    "ፅንስ ማቋረጥ / ማከናገን (Unlawful Abortion)",
+                    "የሕክምና ጥፋት ወንጀል (Medical Malpractice)",
+                    "ሰውን ማስፈራራትና ዛቻ ማቅረብ (Threat & Intimidation)",
+                    "ሰውን በሕገ-ወጥ መንገድ አግቶ መያዝ (Unlawful Confinement)",
+                    "የሰው መጋፋት እና የቪዲዮ/ምስል መቅረጽ ጥሰት (Interference with Personal Liberty)"
+                ]
+            },
+            {
+                section: "Section II. በሴቶች እና ሕፃናት ላይ የሚፈጸሙና የጾታ ግንኙነት ወንጀሎች (Sexual & Gender-Based Crimes)",
+                items: [
+                    "አስገድዶ መድፈር (Rape)",
+                    "በሕፃናት ላይ የሚፈጸም የጾታ ጥቃት/አስገድዶ መድፈር (Statutory Rape)",
+                    "የጾታ ትንኮሳ (Sexual Harassment)",
+                    "ሕገ-ወጥ የሰው ዝውውር (Trafficking in Persons)",
+                    "ሰዎችን ለዝሙት ወይም ለሴተኛ አዳሪነት ማሰማራት (Pimping/Exploitation)",
+                    "የትዳር አጋር አላግባብ መድፈር ወይም አካላዊ ጥቃት (Domestic Violence)",
+                    "የሴት ብልት ግረዛት (Female Genital Mutilation)",
+                    "በግዴታ ወይም ያለ እድሜ ማጋባት (Forced/Early Marriage)",
+                    "ሕፃናትን ለአካላዊ ወይም ለኤኮኖሚያዊ ብዝበዛ ማዋል (Child Exploitation)"
+                ]
+            },
+            {
+                section: "Section III. በንብረት ላይ የሚፈጸሙ ወንጀሎች (Crimes Against Property)",
+                items: [
+                    "ቀሊል ስርቆት (Simple Theft)",
+                    "ከባድ ስርቆት (Aggravated Theft - በሌሊት፣ በቡድን ወይም በሰበር)",
+                    "የታጠቀ የዘረፋ ወንጀል (Robbery)",
+                    "እምነት ማጉደል (Breach of Trust)",
+                    "የማታለልና የማጭበርበር ወንጀል (Fraud)",
+                    "በኃይል ወይም በዛቻ ንብረት መውሰድ (Extortion)",
+                    "በሰው ንብረት ላይ ሆን ብሎ ጉዳት ማድረስ (Intentional Damage to Property)",
+                    "በቸልተኝነት በሰው ንብረት ላይ ጉዳት ማድረስ (Negligent Damage to Property)",
+                    "የሰረቀ ንብረት ደብቆ መያዝ ወይም መግዛት (Receiving Stolen Property)",
+                    "ሕገ-ወጥ ይዞታ መውረርና መያዝ (Squatting/Land Grabbing)",
+                    "ንብረት አላግባብ መጠቀም ወይም ማጠፋት (Mischief)"
+                ]
+            },
+            {
+                section: "Section IV. የሙስና እና የኢኮኖሚ ወንጀሎች (Corruption & Financial Crimes)",
+                items: [
+                    "ጉቦ መቀበል (Receiving Bribe)",
+                    "ጉቦ መስጠት (Giving Bribe)",
+                    "የመንግሥት ወይም የህዝብ ሀብት ምዝበራ (Embezzlement)",
+                    "ሥልጣንን አላግባብ መገልገል። (Abuse of Power/Office)",
+                    "ተገቢ ያልሆነ ብልጽግና ማካበት (Unlawful Enrichment)",
+                    "የውሸት ሰነድ ማዘጋጀትና መገልገል። (Forgery & Uttering Forged Documents)",
+                    "ገንዘብ ማጠብ (Money Laundering)",
+                    "የሐሰት ገንዘብ/ብር ማዘጋጀትና ማሰራጨት (Counterfeiting Currency)",
+                    "የግብር/ታክስ ማጭበርበር እና መሰወር (Tax Evasion)",
+                    "የኮንትሮባንድ ንግድ (Contraband)",
+                    "ሕገ-ወጥ የውጭ ሀገር ገንዘብ ዝውውር (Illegal Foreign Currency Trading)",
+                    "የንግድ ማጭበርበርና ፍትሐዊ ያልሆነ ውድድር (Unfair Commercial Practice)",
+                    "የኪሳራ ማጭበርበር (Fraudulent Bankruptcy)"
+                ]
+            },
+            {
+                section: "Section V. ከቴክኖሎጂና ከሳይበር ጋር የተያያዙ ወንጀሎች (Cyber & Computer Crimes)",
+                items: [
+                    "የኮምፒውተር/ሲስተም ሕገ-ወጥ መግባት (Unauthorized System Access / Hacking)",
+                    "የሳይበር ማታለልና የገንዘብ ስርቆት (Online Fraud)",
+                    "በኢንተርኔት የስም ማጥፋትና የሐሰት ወሬ ማሰራጨት (Cyber Defamation/Fake News)",
+                    "የሌላ ሰውን የዲጂታል መረጃ መฮክ (Identity Theft)",
+                    "ሕገ-ወጥ የቪዲዮ/ፎቶ ስጭትና የብልግና ምስሎች ማሰራጨት (Revenge Porn/Obscene Material)",
+                    "የጥላቻ ንግግርና የሐሰት መረጃ ማሰራጨት (Hate Speech and Disinformation)"
+                ]
+            },
+            {
+                section: "Section VI. በመንግሥት እና በህዝብ አስተዳደር ላይ የሚፈጸሙ ወንጀሎች (Crimes Against State & Public Admin)",
+                items: [
+                    "በሀገር ላይ የሚፈጸም አገር የማታለል ወንጀል (Treason)",
+                    "የሀገር መከላከያን ወይም ደህንነትን መደፈር (Espionage)",
+                    "የሕገ-መንግሥታዊ ሥርዓቱን በኃይል ለመገርሰስ መሞከር (Attempt to Subvert Constitutional Order)",
+                    "የፖሊስ ወይም የመንግሥት ሥራ አስፈፃሚን መቃወም/መደደብ (Resisting Police/Public Officers)",
+                    "በመንግሥት ሠራተኛ ላይ ጥቃት ማድረስ (Assault on Public Servant)",
+                    "የማስ ማስረከብ ወይም የማኅተም ጥሰት (Breach of Official Seal)",
+                    "ራስን የመንግሥት ባለሥልጣን አስመስሎ ማቅረብ (Impersonation of Public Official)",
+                    "የሕዝብ ሰላምና ጸጥታ ማደፍረስ (Disturbance of Public Order)",
+                    "ሕገ-ወጥ ሰልፍ ወይም ስብሰባ ማድረግ (Unlawful Assembly)",
+                    "ሕገ-ወጥ ማህበር ማቋቋም (Forming Unlawful Association)"
+                ]
+            },
+            {
+                section: "Section VII. በፍትህ አሰጣጥ ላይ የሚፈጸሙ ወንጀሎች (Crimes Against Justice)",
+                items: [
+                    "በሐሰት መማል / የሐሰት ምስክርነት መስጠት (Perjury)",
+                    "በሐሰት ሰውን መክሰስ (False Accusation)",
+                    "የማስረጃ ሰነዶችን ማጠፋት ወይም መደበቅ (Destruction of Evidence)",
+                    "ምስክሮችን ማሸበር ወይም ጉቦ መስጠት (Witness Tampering)",
+                    "ከእስር ቤት ማምለጥ (Escape from Lawful Custody)",
+                    "ወንጀለኛን መደበቅ ወይም ማሳደብ (Harboring a Criminal)",
+                    "ወንጀል አለመጠቆም (Failure to Report a Crime)",
+                    "በፍርድ ቤት መደፈር / የችሎት ድፍረት (Contempt of Court)"
+                ]
+            },
+            {
+                section: "Section VIII. በመሳሪያ፣ በአደገኛ ዕፆች እና በማህበረሰብ ደህንነት ላይ የሚፈጸሙ (Drugs, Weapons & Public Safety)",
+                items: [
+                    "ሕገ-ወጥ የመሳሪያ ዝውውርና ይዞታ (Illicit Firearms Possession/Trafficking)",
+                    "አደንዛዥ ዕፆችን ማዘጋጀት፣ መያዝ ወይም መሸጥ (Drug Trafficking/Possessing Narcotics)",
+                    "የሽብርተኝነት ወንጀል (Acts of Terrorism)",
+                    "የቦምብና የፈንጂ አደጋ ማድረስ ወይም መያዝ (Possession of Explosives)",
+                    "ሆን ብሎ እሳት ማያያዝ (Arson)",
+                    "የሕዝብ መጠጥ ውኃ ወይም ምግብ መበከል (Contamination of Food or Water)",
+                    "የሕዝብ ትራንስፖርት ወይም መንገድ መዝጋትና አደጋ ላይ መጣል (Obstruction of Transport/Roads)",
+                    "ተላላፊ በሽታዎችን ሆን ብሎ ማሰራጨት (Spreading Contagious Diseases)"
+                ]
+            },
+            {
+                section: "Section IX. በትራፊክና መንገድ ላይ የሚፈጸሙ የወንጀል ኬዞች (Traffic Offenses)",
+                items: [
+                    "በከባድ ቸልተኝነት የትራፊክ አደጋ ማድረስ (Reckless Driving Causing Accident)",
+                    "ጠጥቶ ወይም አደንዛዥ ዕፅ ወስዶ ማሽከርከር (DUI / Driving Under Influence)",
+                    "አደጋ አድርሶ ከአካባቢው ማምለጥ (Hit and Run)",
+                    "ያለ መንጃ ፈቃድ ማሽከርከርና አደጋ ማድረስ (Driving Without License)"
+                ]
+            },
+            {
+                section: "Section X. በሞራል፣ በቤተሰብ እና በባህል ላይ የሚፈጸሙ ወንጀሎች (Crimes Against Morality & Family)",
+                items: [
+                    "አመንዝራነት (Adultery - በትዳር አጋር አቤቱታ ሲቀርብ)",
+                    "ድርብ ጋብቻ መሥራት (Bigamy)",
+                    "የቤተሰብ ቀለብ አለመክፈል / ግዴታን አለመወጣት (Failure to Provide Maintenance)",
+                    "የሕፃናትን አባትነት/እናትነት መደለዝ ወይም መቀየር (Substitution of Child)",
+                    "የሞራል ወይም የብልግና ድርጊቶችን በሕዝብፊት መፈጸም (Indecent Exposure/Public Indecency)",
+                    "በጎሳ፣ በሃይማኖት ወይም በብሔር መካከል ግጭት ማነሳሳት (Incitement to Ethnic/Religious Violence)",
+                    "የሃይማኖት ቦታዎችን ወይም መቃብርን ማደፈር (Profanation of Places of Worship/Graves)"
+                ]
+            },
+            {
+                section: "Section XI. በሰራዊትና በሀገር መከላከያ ላይ የሚፈጸሙ ወንጀሎች (Military Crimes)",
+                items: [
+                    "ከሰራዊት ማምለጥ / ከውትድርና መኮብለል (Desertion)",
+                    "የሐሰት ወታደራዊ ትዕዛዝ መስጠት ወይም አለመታዘዝ (Insubordination/Disobedience)",
+                    "የጦር መሳሪያዎችንና ጥይትን አላግባብ ማጣት ወይም መሸጥ (Loss or Sale of Military Equipment)"
+                ]
+            },
+            {
+                section: "Section XII. በሌሎች ልዩ ሕጎችና ድንጋጌዎች የሚሸፈኑ ወንጀሎች (Special Statutory Offenses)",
+                items: [
+                    "የደንና የተፈጥሮ ሀብት ሕገ-ወጥ መንጠርና ማጠፋት (Illegal Deforestation)",
+                    "ሕገ-ወጥ የእንስሳት አደንና የዝሆን ጥርስ/የዱር እንስሳት ንግድ (Poaching and Wildlife Trafficking)",
+                    "የቅርስ ሕገ-ወጥ ዝውውርና ማደፈር (Illicit Cultural Heritage Trafficking)",
+                    "የባህር ላይ ወንበዴነት ወይም የአየር መንገድ ጠለፋ (Piracy and Aircraft Hijacking)",
+                    "የሀሰት መድኃኒት ማዘጋጀትና ማሰራጨት (Counterfeit Medicine)",
+                    "የሌላ ሰውን የንግድ ምልክት/የፈጠራ መብት መስረቅና መገልገል። (Intellectual Property Theft/Piracy)",
+                    "የቴሌኮም ሕገ-ወጥ አገልግሎትና ማጭበርበር (Telecom Fraud)",
+                    "የድንበር ሕገ-ወጥ ሰርጎ ገብነት (Illegal Border Crossing)"
+                ]
+            }
+        ];
+
+        function switchPage(pageNum) {
+            currentPage = pageNum;
+            const btn1 = document.getElementById('btn-page-1');
+            const btn2 = document.getElementById('btn-page-2');
+
+            if (pageNum === 1) {
+                btn1.className = "px-2.5 py-1 rounded-md text-[11px] font-bold transition-all bg-gold-500 text-navy-950 shadow";
+                btn2.className = "px-2.5 py-1 rounded-md text-[11px] font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-800";
+            } else {
+                btn2.className = "px-2.5 py-1 rounded-md text-[11px] font-bold transition-all bg-gold-500 text-navy-950 shadow";
+                btn1.className = "px-2.5 py-1 rounded-md text-[11px] font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-800";
+            }
+
+            document.getElementById('format-search-input').value = '';
+            renderStoreItems();
+        }
+
+        function renderStoreItems(filterText = '') {
+            const container = document.getElementById('formats-store-container');
+            container.innerHTML = '';
+
+            const activeDataset = (currentPage === 1) ? legalFormatsData : legalFormatsDataPage2;
+
+            activeDataset.forEach(sec => {
+                const filteredItems = sec.items.filter(item => item.toLowerCase().includes(filterText.toLowerCase()));
+                
+                if (filteredItems.length > 0) {
+                    const secDiv = document.createElement('div');
+                    secDiv.className = 'space-y-4';
+
+                    const title = document.createElement('h2');
+                    title.className = 'text-lg font-bold text-gold-500 border-b border-slate-800 pb-2 flex items-center gap-2';
+                    title.innerHTML = `<i class="fa-solid fa-folder-tree text-xs"></i> ${sec.section}`;
+                    secDiv.appendChild(title);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
+
+                    filteredItems.forEach(item => {
+                        const itemCard = document.createElement('div');
+                        itemCard.className = 'format-item-3d';
+                        itemCard.innerHTML = `
+                            <div class="flex items-center gap-3 overflow-hidden">
+                                <div class="format-icon-well">
+                                    <i class="fa-solid fa-file-lines text-sm"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-200 truncate" title="${item}">${item}</span>
+                            </div>
+                            <div class="flex items-center flex-shrink-0">
+                                <button onclick="openBuyModal()" class="buy-circle-btn" title="Buy Format">
+                                    Buy
+                                </button>
+                            </div>
+                        `;
+                        grid.appendChild(itemCard);
+                    });
+
+                    secDiv.appendChild(grid);
+                    container.appendChild(secDiv);
+                }
+            });
+
+            if (container.children.length === 0) {
+                container.innerHTML = `<div class="text-center text-slate-500 py-12"><i class="fa-solid fa-circle-exclamation text-3xl mb-2"></i><p>No matching legal formats found.</p></div>`;
+            }
+        }
+
+        function filterFormats() {
+            const query = document.getElementById('format-search-input').value;
+            renderStoreItems(query);
+        }
+
+        function openStorePage() {
+            document.getElementById('main-landing-page').classList.add('hidden');
+            document.getElementById('search-page-view').classList.add('hidden');
+            document.getElementById('store-page-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+            renderStoreItems();
+        }
+
+        function closeStorePage() {
+            document.getElementById('store-page-view').classList.add('hidden');
+            document.getElementById('main-landing-page').classList.remove('hidden');
+        }
+
         (function enhancePageMotion() {
             const progress = document.getElementById('scroll-progress');
             const siteHeader = document.querySelector('.site-header');
@@ -958,9 +1518,9 @@
         }
 
         let isDocLoaded = false;
-        const MAX_PAGE_RESULTS = 60;      // cap how many matching pages we render at once
-        const SNIPPETS_PER_PAGE = 3;      // max snippets shown per matching page
-        const CONTEXT_CHARS = 90;         // characters of context on each side of a match
+        const MAX_PAGE_RESULTS = 60;
+        const SNIPPETS_PER_PAGE = 3;
+        const CONTEXT_CHARS = 90;
 
         function escapeHtml(str) {
             return str
@@ -996,6 +1556,7 @@
 
         function openSearchPage(query = '') {
             document.getElementById('main-landing-page').classList.add('hidden');
+            document.getElementById('store-page-view').classList.add('hidden');
             document.getElementById('search-page-view').classList.remove('hidden');
             if (query) {
                 document.getElementById('document-search-term').value = query;
@@ -1016,7 +1577,6 @@
             openSearchPage(query);
         }
 
-        // Build highlighted snippets around each match in a page's text
         function buildSnippets(pageText, regex) {
             const snippets = [];
             let match;
@@ -1027,14 +1587,13 @@
                 const end = Math.min(pageText.length, match.index + match[0].length + CONTEXT_CHARS);
                 let snippet = pageText.slice(start, end).replace(/\s+/g, ' ').trim();
 
-                // Escape then re-highlight the matched term inside the escaped snippet
                 const escapedSnippet = escapeHtml(snippet);
                 const localRegex = new RegExp(regex.source, 'gi');
                 const highlighted = escapedSnippet.replace(localRegex, m => `<mark>${m}</mark>`);
 
                 snippets.push((start > 0 ? '… ' : '') + highlighted + (end < pageText.length ? ' …' : ''));
                 count++;
-                if (match.index === regex.lastIndex) regex.lastIndex++; // avoid infinite loop on zero-width match
+                if (match.index === regex.lastIndex) regex.lastIndex++;
             }
             return snippets;
         }

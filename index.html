@@ -226,7 +226,6 @@
                 0 20px 28px -12px rgba(180, 113, 8, 0.62);
         }
 
-        /* Small 3D Div Styling for Format Items */
         .format-item-3d {
             position: relative;
             background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
@@ -274,7 +273,6 @@
             transform: scale(1.1) rotate(-5deg);
         }
 
-        /* Circular Floating Buy Button Styling */
         .buy-circle-btn {
             width: 2.25rem;
             height: 2.25rem;
@@ -710,19 +708,29 @@
                     </div>
                     <div>
                         <span class="block text-white font-extrabold text-lg tracking-tight leading-none">IYASU ANDUALEM</span>
-                        <span class="text-gold-500 text-xs font-semibold tracking-widest uppercase">Law Office</span>
+                        <span class="text-gold-500 text-xs font-semibold tracking-widest uppercase" data-i18n="nav-subtitle">Law Office</span>
                     </div>
                 </a>
 
                 <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-                    <a href="#" class="text-white font-semibold flex items-center gap-1.5"><i class="fa-solid fa-house text-xs text-gold-500"></i> Home</a>
-                    <a href="javascript:void(0)" onclick="openSearchPage()" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gavel text-xs"></i> Cassation Finder</a>
-                    <a href="javascript:void(0)" onclick="openStorePage()" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-xs"></i> Formats Store</a>
-                    <a href="#insights" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-newspaper text-xs"></i> Insights</a>
+                    <a href="#" class="text-white font-semibold flex items-center gap-1.5"><i class="fa-solid fa-house text-xs text-gold-500"></i> <span data-i18n="nav-home">Home</span></a>
+                    <a href="javascript:void(0)" onclick="openSearchPage()" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gavel text-xs"></i> <span data-i18n="nav-cassation">Cassation Finder</span></a>
+                    <a href="javascript:void(0)" onclick="openStorePage()" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-file-contract text-xs"></i> <span data-i18n="nav-store">Formats Store</span></a>
+                    <a href="#insights" class="hover:text-gold-500 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-newspaper text-xs"></i> <span data-i18n="nav-insights">Insights</span></a>
                 </nav>
 
-                <div class="hidden sm:flex items-center space-x-4">
-                     <button onclick="openSearchPage()" class="shine-on-hover bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-gold-600/20 hover:from-gold-600 hover:to-gold-700 hover:text-white transition-all transform active:scale-95 text-sm">
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- LANGUAGE TOGGLE BUTTON ADDED HERE -->
+                    <div class="inline-flex items-center bg-navy-950/90 p-1 rounded-xl border border-gold-500/40 shadow-inner">
+                        <button id="lang-btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-gold-500 text-navy-950 shadow">
+                            ENG
+                        </button>
+                        <button id="lang-btn-am" onclick="setLanguage('am')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+                            አማ
+                        </button>
+                    </div>
+
+                     <button onclick="openSearchPage()" class="hidden sm:inline-block shine-on-hover bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-gold-600/20 hover:from-gold-600 hover:to-gold-700 hover:text-white transition-all transform active:scale-95 text-sm" data-i18n="nav-access">
                         Access Portal
                     </button>
                 </div>
@@ -737,34 +745,34 @@
                 <div class="grid lg:grid-cols-12 gap-12 items-center">
                     
                     <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800 border border-gold-500/30 text-gold-500 text-xs font-semibold uppercase tracking-wider shadow-inner">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800 border border-gold-500/30 text-gold-500 text-xs font-semibold uppercase tracking-wider shadow-inner" data-i18n="hero-badge">
                             <i class="fa-solid fa-shield-halved"></i> Premier Legal Technology Platform
                         </div>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight" data-i18n="hero-title">
                             Expert Ethiopian Legal Counsel & <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-500 to-amber-300">Instant Digital Resources</span>
                         </h1>
-                        <p class="text-slate-300 text-lg sm:text-xl max-w-2xl font-light leading-relaxed">
+                        <p class="text-slate-300 text-lg sm:text-xl max-w-2xl font-light leading-relaxed" data-i18n="hero-desc">
                             Empowering practitioners, businesses, and individuals with automated Cassation decision searches, verified legal formats, and daily practical commentary.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                             <button onclick="openStorePage()" class="shine-on-hover w-full sm:w-auto bg-navy-800 hover:bg-navy-800/80 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 hover:border-gold-500/50 transition-all flex items-center justify-center gap-3">
                                 <i class="fa-solid fa-folder-open text-gold-500"></i>
-                                <span>Browse Formats Store</span>
+                                <span data-i18n="hero-browse-btn">Browse Formats Store</span>
                             </button>
                         </div>
                         <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-800/80 text-center lg:text-left">
                             <div>
                                 <div class="text-2xl font-bold text-white">22+</div>
-                                <div class="text-xs text-slate-400">Directive & Code Indexes</div>
+                                <div class="text-xs text-slate-400" data-i18n="stat-1">Directive & Code Indexes</div>
                             </div>
                             <div>
                                 <div class="text-2xl font-bold text-gold-500">100%</div>
-                                <div class="text-xs text-slate-400">Verified Precedents</div>
+                                <div class="text-xs text-slate-400" data-i18n="stat-2">Verified Precedents</div>
                             </div>
                             <div>
-                                <div class="text-2xl font-bold text-white">Instant</div>
-                                <div class="text-xs text-slate-400">Digital Downloads</div>
+                                <div class="text-2xl font-bold text-white" data-i18n="stat-3-val">Instant</div>
+                                <div class="text-xs text-slate-400" data-i18n="stat-3">Digital Downloads</div>
                             </div>
                         </div>
                     </div>
@@ -784,13 +792,13 @@
                                 <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="Legal Gavel and Scale" class="w-full h-48 object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center">
-                                    <span class="bg-gold-500 text-navy-950 font-bold text-xs px-2.5 py-1 rounded shadow">Precedent Ready</span>
+                                    <span class="bg-gold-500 text-navy-950 font-bold text-xs px-2.5 py-1 rounded shadow" data-i18n="hero-card-badge">Precedent Ready</span>
                                     <span class="text-xs text-slate-300 font-mono"><i class="fa-solid fa-check-circle text-emerald-400"></i> Amharic OCR Ready</span>
                                 </div>
                             </div>
 
                             <form onsubmit="handleHeroSearch(event)" class="mt-4 bg-navy-900 rounded-xl p-3 border border-slate-700/50">
-                                <div class="flex items-center text-xs text-slate-400 mb-2">
+                                <div class="flex items-center text-xs text-slate-400 mb-2" data-i18n="hero-filter-title">
                                     <i class="fa-solid fa-filter text-gold-500 mr-2"></i> Instant Cassation Filter
                                 </div>
                                 <div class="flex gap-2">
@@ -808,9 +816,9 @@
         <section class="py-20 bg-slate-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">Core Offerings</h2>
-                    <p class="text-3xl font-extrabold text-navy-900 sm:text-4xl">Modern Solutions for Legal Excellence</p>
-                    <p class="mt-4 text-slate-600 text-base">Comprehensive digital products and professional counsel designed specifically for the Ethiopian legal context.</p>
+                    <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2" data-i18n="offerings-tag">Core Offerings</h2>
+                    <p class="text-3xl font-extrabold text-navy-900 sm:text-4xl" data-i18n="offerings-title">Modern Solutions for Legal Excellence</p>
+                    <p class="mt-4 text-slate-600 text-base" data-i18n="offerings-desc">Comprehensive digital products and professional counsel designed specifically for the Ethiopian legal context.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
@@ -819,14 +827,14 @@
                             <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
                                 <i class="fa-solid fa-calendar-check"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-3">Daily Legal Advice Subscriptions</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            <h3 class="text-xl font-bold text-navy-900 mb-3" data-i18n="card1-title">Daily Legal Advice Subscriptions</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6" data-i18n="card1-desc">
                                 Stay up-to-date with daily practical legal updates, concise court ruling breakdowns, regulatory alerts, and actionable legal advice directly delivered to practitioners.
                             </p>
                         </div>
                         <div>
                             <a href="#insights" class="inline-flex items-center text-sm font-bold text-gold-600 hover:text-gold-700 group">
-                                Explore Commentary <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                <span data-i18n="card1-link">Explore Commentary</span> <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
@@ -836,14 +844,14 @@
                             <div class="icon-3d-well w-14 h-14 rounded-xl text-gold-700 flex items-center justify-center text-2xl font-bold mb-6">
                                 <i class="fa-solid fa-file-signature"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-navy-900 mb-3">Verified Legal Formats Store</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            <h3 class="text-xl font-bold text-navy-900 mb-3" data-i18n="card2-title">Verified Legal Formats Store</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-6" data-i18n="card2-desc">
                                 Download standardized court pleadings, contract agreements, and power of attorney templates meticulously structured to comply with current Ethiopian proclamations.
                             </p>
                         </div>
                         <div>
                             <button class="inline-flex items-center text-sm font-bold text-gold-600 hover:text-gold-700 group">
-                                Browse Template Catalog <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                <span data-i18n="card2-link">Browse Template Catalog</span> <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
                             </button>
                         </div>
                     </div>
@@ -857,47 +865,47 @@
                 
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
                     <div>
-                        <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">DIGITAL PRODUCTS</h2>
+                        <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2" data-i18n="products-tag">DIGITAL PRODUCTS</h2>
                         <h3 class="text-3xl font-extrabold text-navy-900 flex items-center gap-3">
-                            Featured Legal Formats 
-                            <span class="text-xs bg-gold-500 text-navy-950 font-bold px-2.5 py-1 rounded-full uppercase tracking-normal">Click to Open Store</span>
+                            <span data-i18n="products-title">Featured Legal Formats</span>
+                            <span class="text-xs bg-gold-500 text-navy-950 font-bold px-2.5 py-1 rounded-full uppercase tracking-normal" data-i18n="products-badge">Click to Open Store</span>
                         </h3>
                     </div>
                     <button class="shine-on-hover mt-4 md:mt-0 text-sm font-bold text-navy-900 hover:text-gold-600 transition-colors flex items-center gap-1">
-                        View All 90+ Templates <i class="fa-solid fa-chevron-right text-xs"></i>
+                        <span data-i18n="products-viewall">View All 90+ Templates</span> <i class="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                 </div>
 
                 <div id="insights" class="pt-8 border-t border-slate-200" onclick="event.stopPropagation()">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
                         <div>
-                            <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2">Daily Commentary</h2>
-                            <h3 class="text-3xl font-extrabold text-navy-900">Recent Legal Insights</h3>
+                            <h2 class="text-xs font-bold text-gold-600 uppercase tracking-widest mb-2" data-i18n="insights-tag">Daily Commentary</h2>
+                            <h3 class="text-3xl font-extrabold text-navy-900" data-i18n="insights-title">Recent Legal Insights</h3>
                         </div>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-8">
                         <article class="reveal flex flex-col sm:flex-row gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=400&q=80" alt="Legal Analysis" class="w-full sm:w-36 h-36 object-cover rounded-xl shadow">
+                            <img src="commerciallaw.jpg" alt="Legal Analysis" class="w-full sm:w-36 h-36 object-cover rounded-xl shadow">
                             <div>
-                                <div class="text-xs text-gold-600 font-bold mb-1">Commercial Law Update</div>
+                                <div class="text-xs text-gold-600 font-bold mb-1" data-i18n="art1-tag">Commercial Law Update</div>
                                 <h4 class="font-bold text-navy-900 text-base mb-2 hover:text-gold-600 transition-colors">
-                                    <a href="#">Key Directives Affecting Corporate Registration Procedure</a>
+                                    <a href="#" data-i18n="art1-title">Key Directives Affecting Corporate Registration Procedure</a>
                                 </h4>
-                                <p class="text-slate-600 text-xs leading-relaxed mb-3">A practical breakdown of mandatory compliance clauses and recent procedural directives...</p>
-                                <span class="text-xs text-slate-400 font-mono">3 min read • Updated Recently</span>
+                                <p class="text-slate-600 text-xs leading-relaxed mb-3" data-i18n="art1-desc">A practical breakdown of mandatory compliance clauses and recent procedural directives...</p>
+                                <span class="text-xs text-slate-400 font-mono" data-i18n="art1-time">3 min read • Updated Recently</span>
                             </div>
                         </article>
 
                         <article class="reveal flex flex-col sm:flex-row gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-200">
-                            <img src="https://images.unsplash.com/photo-1436450412740-6b988f486c6b?auto=format&fit=crop&w=400&q=80" alt="Cassation Bench Analysis" class="w-full sm:w-36 h-36 object-cover rounded-xl shadow">
+                            <img src="cassation.jpg" alt="Cassation Bench Analysis" class="w-full sm:w-36 h-36 object-cover rounded-xl shadow">
                             <div>
-                                <div class="text-xs text-gold-600 font-bold mb-1">Cassation Analysis</div>
+                                <div class="text-xs text-gold-600 font-bold mb-1" data-i18n="art2-tag">Cassation Analysis</div>
                                 <h4 class="font-bold text-navy-900 text-base mb-2 hover:text-gold-600 transition-colors">
-                                    <a href="#">Interpretation of Contractual Breach Under Recent Bench Decisions</a>
+                                    <a href="#" data-i18n="art2-title">Interpretation of Contractual Breach Under Recent Bench Decisions</a>
                                 </h4>
-                                <p class="text-slate-600 text-xs leading-relaxed mb-3">Reviewing binding interpretations set by the Federal Supreme Court Cassation Division...</p>
-                                <span class="text-xs text-slate-400 font-mono">5 min read • Updated Recently</span>
+                                <p class="text-slate-600 text-xs leading-relaxed mb-3" data-i18n="art2-desc">Reviewing binding interpretations set by the Federal Supreme Court Cassation Division...</p>
+                                <span class="text-xs text-slate-400 font-mono" data-i18n="art2-time">5 min read • Updated Recently</span>
                             </div>
                         </article>
                     </div>
@@ -910,14 +918,14 @@
             <div class="footer-grid max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div class="footer-brand md:col-span-2 space-y-3">
                     <span class="text-white font-bold text-lg block mb-2">IYASU ANDUALEM LAW OFFICE</span>
-                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4">
+                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed mb-4" data-i18n="footer-desc">
                         Providing top-tier legal advocacy and digital resources tailored to modern legal challenges across Ethiopia.
                     </p>
                     
                     <div class="space-y-2 text-xs">
                          <a href="https://maps.google.com/?q=Addis+Ababa,+Lideta+subcity" target="_blank" rel="noopener noreferrer" class="footer-contact flex items-center text-gold-500 hover:underline">
                             <i class="fa-solid fa-location-dot w-5 text-center mr-2"></i>
-                            <span>Addis Ababa, Lideta subcity</span>
+                            <span data-i18n="footer-location">Addis Ababa, Lideta subcity</span>
                         </a>
                          <a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="footer-contact flex items-center text-slate-300 hover:text-gold-500 transition-colors">
                             <i class="fa-solid fa-phone w-5 text-center mr-2 text-gold-500"></i>
@@ -938,26 +946,26 @@
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h5 class="footer-heading text-white font-semibold text-xs uppercase tracking-wider mb-3">Navigation</h5>
+                    <h5 class="footer-heading text-white font-semibold text-xs uppercase tracking-wider mb-3" data-i18n="footer-nav-head">Navigation</h5>
                     <ul class="footer-list space-y-2 text-xs">
-                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Home</a></li>
-                        <li><a href="javascript:void(0)" onclick="openSearchPage()" class="footer-link hover:text-gold-500 transition-colors">Cassation Decisions Finder</a></li>
-                        <li><a href="javascript:void(0)" onclick="openStorePage()" class="footer-link hover:text-gold-500 transition-colors">Legal Format Store</a></li>
-                        <li><a href="#insights" class="footer-link hover:text-gold-500 transition-colors">Daily Legal Commentary</a></li>
+                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors" data-i18n="nav-home">Home</a></li>
+                        <li><a href="javascript:void(0)" onclick="openSearchPage()" class="footer-link hover:text-gold-500 transition-colors" data-i18n="nav-cassation">Cassation Decisions Finder</a></li>
+                        <li><a href="javascript:void(0)" onclick="openStorePage()" class="footer-link hover:text-gold-500 transition-colors" data-i18n="nav-store">Legal Format Store</a></li>
+                        <li><a href="#insights" class="footer-link hover:text-gold-500 transition-colors" data-i18n="nav-insights">Daily Legal Commentary</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h5 class="footer-heading text-white font-semibold text-xs uppercase tracking-wider mb-3">Legal & Support</h5>
+                    <h5 class="footer-heading text-white font-semibold text-xs uppercase tracking-wider mb-3" data-i18n="footer-support-head">Legal & Support</h5>
                     <ul class="footer-list space-y-2 text-xs">
-                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors">Privacy Policy</a></li>
-                        <li><a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="footer-link hover:text-gold-500 transition-colors">Contact Counsel</a></li>
+                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors" data-i18n="footer-terms">Terms of Service</a></li>
+                        <li><a href="#" class="footer-link hover:text-gold-500 transition-colors" data-i18n="footer-privacy">Privacy Policy</a></li>
+                        <li><a href="tel:+251922930707" onclick="handlePhoneClick(event, '+251922930707')" class="footer-link hover:text-gold-500 transition-colors" data-i18n="footer-contact">Contact Counsel</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-xs text-center md:flex md:justify-between">
-                <p>© 2026 Iyasu Andualem Law Office. All rights reserved.</p>
-                <p class="mt-2 md:mt-0 text-slate-500">Modern Legal Tech / Ethiopian Practice Portal</p>
+                <p data-i18n="footer-rights">© 2026 Iyasu Andualem Law Office. All rights reserved.</p>
+                <p class="mt-2 md:mt-0 text-slate-500" data-i18n="footer-tech">Modern Legal Tech / Ethiopian Practice Portal</p>
             </div>
         </footer>
     </div>
@@ -967,7 +975,7 @@
         <header class="bg-navy-900 border-b border-slate-800 sticky top-0 z-50 p-4">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 <button onclick="closeStorePage()" class="text-gold-500 font-bold text-sm flex items-center gap-2 hover:underline">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Main Site
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="store-back">Back to Main Site</span>
                 </button>
                 <div class="text-sm font-semibold text-slate-300">Iyasu Andualem Law Office</div>
             </div>
@@ -977,22 +985,20 @@
             <div class="bg-navy-900 border border-slate-800 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-                <!-- FLEXIBLE RESPONSIVE CONTAINER (FIXES OVERLAP) -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Legal Format Store</h1>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white" data-i18n="store-head-title">Legal Format Store</h1>
                     
-                    <!-- COMPACT & CLEAN PAGE TOGGLE SWITCHER -->
                     <div class="inline-flex items-center gap-1 bg-navy-950/90 p-1 rounded-lg border border-gold-500/30 shadow-md self-start sm:self-auto">
-                        <button id="btn-page-1" onclick="switchPage(1)" class="px-2.5 py-1 rounded-md text-[11px] font-bold transition-all bg-gold-500 text-navy-950 shadow">
-                            Page 1
+                        <button id="btn-page-1" onclick="switchPage(1)" class="px-2.5 py-1 rounded-md text-[11px] font-bold transition-all bg-gold-500 text-navy-950 shadow" data-i18n="store-civil-tab">
+                            CIVIL
                         </button>
-                        <button id="btn-page-2" onclick="switchPage(2)" class="px-2.5 py-1 rounded-md text-[11px] font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-800">
-                            Page 2
+                        <button id="btn-page-2" onclick="switchPage(2)" class="px-2.5 py-1 rounded-md text-[11px] font-bold transition-all text-slate-400 hover:text-white hover:bg-slate-800" data-i18n="store-criminal-tab">
+                            Criminal
                         </button>
                     </div>
                 </div>
 
-                <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mb-6">Explore and download standardized legal formats and pleadings according to current Ethiopian laws. Organized across key procedural and substantive categories.</p>
+                <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mb-6" data-i18n="store-head-desc">Explore and download standardized legal formats and pleadings according to current Ethiopian laws. Organized across key procedural and substantive categories.</p>
 
                 <div class="relative max-w-xl">
                     <input type="text" id="format-search-input" onkeyup="filterFormats()" placeholder="Search legal format (e.g., የሽያጭ ውል, የውርስ, ስጦታ)..." class="bg-navy-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white w-full focus:outline-none focus:border-gold-500 pl-10">
@@ -1010,20 +1016,20 @@
         <header class="bg-navy-900 border-b border-slate-800 sticky top-0 z-50 p-4">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 <button onclick="closeSearchPage()" class="text-gold-500 font-bold text-sm flex items-center gap-2 hover:underline">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Main Site
+                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="store-back">Back to Main Site</span>
                 </button>
-                <div class="text-sm font-semibold text-slate-300">Cassation Document Search Engine</div>
+                <div class="text-sm font-semibold text-slate-300" data-i18n="cassation-header">Cassation Document Search Engine</div>
             </div>
         </header>
 
         <div class="max-w-6xl mx-auto p-6">
             <div class="bg-navy-900 border border-slate-800 rounded-2xl p-6 mb-8 shadow-xl">
-                <h2 class="text-xl font-bold text-white mb-2">686-Page Precedent Index Search</h2>
-                <p class="text-xs text-slate-400 mb-6">Type any keyword or article reference below. Every match is shown with its exact page number, and you can open that exact page directly in the original PDF.</p>
+                <h2 class="text-xl font-bold text-white mb-2" data-i18n="cassation-title">686-Page Precedent Index Search</h2>
+                <p class="text-xs text-slate-400 mb-6" data-i18n="cassation-desc">Type any keyword or article reference below. Every match is shown with its exact page number, and you can open that exact page directly in the original PDF.</p>
 
                 <div class="flex gap-3">
                     <input type="text" id="document-search-term" oninput="executeDocumentSearch()" placeholder="Enter terms (e.g., የወንጀል ሕግ, የፍትሐብሔር)..." class="bg-navy-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white w-full focus:outline-none focus:border-gold-500">
-                    <button onclick="executeDocumentSearch()" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-6 py-3 rounded-xl transition-all">Search</button>
+                    <button onclick="executeDocumentSearch()" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-6 py-3 rounded-xl transition-all" data-i18n="search-btn">Search</button>
                 </div>
                 <div id="search-status" class="mt-3 text-xs text-gold-500 font-mono"></div>
             </div>
@@ -1040,22 +1046,18 @@
     <!-- WHATSAPP BUY MODAL POPUP -->
     <div id="buyModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm hidden p-4">
         <div class="relative bg-navy-900 border border-gold-500/40 rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl transform transition-all scale-100">
-            <!-- Close Button -->
             <button onclick="closeBuyModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-800 transition-colors">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             
-            <!-- WhatsApp Logo Upper Center -->
             <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-500 text-3xl shadow-lg">
                 <i class="fa-brands fa-whatsapp"></i>
             </div>
             
-            <!-- Phrase -->
             <p id="buyModalText" class="text-slate-200 text-sm leading-relaxed font-medium mb-6">
                 መግዛት የሚፈልጉትን የፍትሐ ብሔር ክስ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ
             </p>
             
-            <!-- WhatsApp Account Button -->
             <a href="https://wa.me/251922930707" target="_blank" rel="noopener noreferrer" class="shine-on-hover inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl w-full text-sm shadow-lg shadow-emerald-600/30 transition-all">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
                 <span>+251922930707</span>
@@ -1067,15 +1069,166 @@
     <script src="document-data.js"></script>
 
     <script>
+        // Language Translation Matrix Engine
+        let currentLang = 'en';
+
+        const i18nTranslations = {
+            en: {
+                "nav-subtitle": "Law Office",
+                "nav-home": "Home",
+                "nav-cassation": "Cassation Finder",
+                "nav-store": "Formats Store",
+                "nav-insights": "Insights",
+                "nav-access": "Access Portal",
+                "hero-badge": '<i class="fa-solid fa-shield-halved"></i> Premier Legal Technology Platform',
+                "hero-title": 'Expert Ethiopian Legal Counsel & <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-500 to-amber-300">Instant Digital Resources</span>',
+                "hero-desc": "Empowering practitioners, businesses, and individuals with automated Cassation decision searches, verified legal formats, and daily practical commentary.",
+                "hero-browse-btn": "Browse Formats Store",
+                "stat-1": "Directive & Code Indexes",
+                "stat-2": "Verified Precedents",
+                "stat-3-val": "Instant",
+                "stat-3": "Digital Downloads",
+                "hero-card-badge": "Precedent Ready",
+                "hero-filter-title": '<i class="fa-solid fa-filter text-gold-500 mr-2"></i> Instant Cassation Filter',
+                "offerings-tag": "Core Offerings",
+                "offerings-title": "Modern Solutions for Legal Excellence",
+                "offerings-desc": "Comprehensive digital products and professional counsel designed specifically for the Ethiopian legal context.",
+                "card1-title": "Daily Legal Advice Subscriptions",
+                "card1-desc": "Stay up-to-date with daily practical legal updates, concise court ruling breakdowns, regulatory alerts, and actionable legal advice directly delivered to practitioners.",
+                "card1-link": "Explore Commentary",
+                "card2-title": "Verified Legal Formats Store",
+                "card2-desc": "Download standardized court pleadings, contract agreements, and power of attorney templates meticulously structured to comply with current Ethiopian proclamations.",
+                "card2-link": "Browse Template Catalog",
+                "products-tag": "DIGITAL PRODUCTS",
+                "products-title": "Featured Legal Formats",
+                "products-badge": "Click to Open Store",
+                "products-viewall": "View All 90+ Templates",
+                "insights-tag": "Daily Commentary",
+                "insights-title": "Recent Legal Insights",
+                "art1-tag": "Commercial Law Update",
+                "art1-title": "Key Directives Affecting Corporate Registration Procedure",
+                "art1-desc": "A practical breakdown of mandatory compliance clauses and recent procedural directives...",
+                "art1-time": "3 min read • Updated Recently",
+                "art2-tag": "Cassation Analysis",
+                "art2-title": "Interpretation of Contractual Breach Under Recent Bench Decisions",
+                "art2-desc": "Reviewing binding interpretations set by the Federal Supreme Court Cassation Division...",
+                "art2-time": "5 min read • Updated Recently",
+                "footer-desc": "Providing top-tier legal advocacy and digital resources tailored to modern legal challenges across Ethiopia.",
+                "footer-location": "Addis Ababa, Lideta subcity",
+                "footer-nav-head": "Navigation",
+                "footer-support-head": "Legal & Support",
+                "footer-terms": "Terms of Service",
+                "footer-privacy": "Privacy Policy",
+                "footer-contact": "Contact Counsel",
+                "footer-rights": "© 2026 Iyasu Andualem Law Office. All rights reserved.",
+                "footer-tech": "Modern Legal Tech / Ethiopian Practice Portal",
+                "store-back": "Back to Main Site",
+                "store-head-title": "Legal Format Store",
+                "store-head-desc": "Explore and download standardized legal formats and pleadings according to current Ethiopian laws. Organized across key procedural and substantive categories.",
+                "store-civil-tab": "CIVIL",
+                "store-criminal-tab": "Criminal",
+                "cassation-header": "Cassation Document Search Engine",
+                "cassation-title": "686-Page Precedent Index Search",
+                "cassation-desc": "Type any keyword or article reference below. Every match is shown with its exact page number, and you can open that exact page directly in the original PDF.",
+                "search-btn": "Search"
+            },
+            am: {
+                "nav-subtitle": "የሕግ ቢሮ",
+                "nav-home": "ዋና ገጽ",
+                "nav-cassation": "የሰበር ውሳኔዎች ፈልግ",
+                "nav-store": "የሕግ ፎርማቶች መደብር",
+                "nav-insights": "የሕግ አስተ አስተያየቶች",
+                "nav-access": "ፖርታል ግባ",
+                "hero-badge": '<i class="fa-solid fa-shield-halved"></i> ቀዳሚ የሕግ ቴክኖሎጂ ፖርታል',
+                "hero-title": 'ብቁ የኢትዮጵያ ሕግ ምክር እና <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-500 to-amber-300">ፈጣን ዲጂታል ግብአቶች</span>',
+                "hero-desc": "ለህግ ባለሙያዎች፣ ለንግድ ድርጅቶች እና ለግለሰቦች አውቶሜትድ የሰበር ውሳኔ ፍለጋን፣ የተረጋገጡ የሕግ ሰነዶችንና ዕለታዊ ምክሮችን ያቀርባል።",
+                "hero-browse-btn": "የሕግ ፎርማቶችን ይመልከቱ",
+                "stat-1": "መመሪያዎች እና ሕጎች",
+                "stat-2": "የተረጋገጡ የሰበር ውሳኔዎች",
+                "stat-3-val": "ፈጣን",
+                "stat-3": "ዲጂታል ውርዶች",
+                "hero-card-badge": "የሰበር ውሳኔ ዝግጁ",
+                "hero-filter-title": '<i class="fa-solid fa-filter text-gold-500 mr-2"></i> ፈጣን የሰበር ማጣሪያ',
+                "offerings-tag": "ዋና አገልግሎቶች",
+                "offerings-title": "ለሕግ የበላይነትና ለላቀ አገልግሎት ዘመናዊ መፍትሔዎች",
+                "offerings-desc": "ለኢትዮጵያ የሕግ ሥርዓት ተስማሚ በሆነ መልኩ የተዘጋጁ አጠቃላይ ዲጂታል ምርቶች እና ሙያዊ ምክሮች።",
+                "card1-title": "ዕለታዊ የሕግ ምክር ምዝገባ",
+                "card1-desc": "በየዕለቱ ከሚወጡ የሕግ ማሻሻያዎች፣ የፍርድ ቤት ውሳኔዎች ትንተና እና ተግባራዊ የሕግ ምክሮች ጋር ሁልጊዜ ዘመናዊ ይሁኑ።",
+                "card1-link": "አስተያየቶችን ያንብቡ",
+                "card2-title": "የተረጋገጡ የሕግ ፎርማቶች መደብር",
+                "card2-desc": "ከአሁኑ የኢትዮጵያ አዋጆች ጋር በተጣጣመ መልኩ የተቀረጹ የፍርድ ቤት ክሶች፣ የውል ስምምነቶች እና የውክልና ሰነዶችን ያውርዱ።",
+                "card2-link": "የቅጾች ካታሎግ ይመልከቱ",
+                "products-tag": "ዲጂታል ምርቶች",
+                "products-title": "ተመርጠው የቀረቡ የሕግ ፎርማቶች",
+                "products-badge": "መደብሩን ለመክፈት ይጫኑ",
+                "products-viewall": "ሁሉንም 90+ ፎርማቶች ይመልከቱ",
+                "insights-tag": "ዕለታዊ ትንተና",
+                "insights-title": "ቅርብ ጊዜ የወጡ የሕግ አስተያየቶች",
+                "art1-tag": "የንግድ ሕግ ማሻሻያ",
+                "art1-title": "በድርጅቶች ምዝገባ ሥነ-ሥርዓት ላይ ተጽዕኖ የሚያሳድሩ መመሪያዎች",
+                "art1-desc": "የግዴታ አሰራሮች እና የቅርብ ጊዜ የስነ-ስርዓት መመሪያዎች ተግባራዊ ትንተና...",
+                "art1-time": "የ3 ደቂቃ ንባብ • በቅርቡ የተሻሻለ",
+                "art2-tag": "የሰበር ትንተና",
+                "art2-title": "በቅርብ ጊዜ የሰበር ችሎት ውሳኔዎች መሠረት የውል ማፈረስ ትርጉም",
+                "art2-desc": "በፌዴራል ጠቅላይ ፍርድ ቤት ሰበር ችሎት የተሰጡ አስገዳጅ የሕግ ትርጉሞችን መገምገም...",
+                "art2-time": "የ5 ደቂቃ ንባብ • በቅርቡ የተሻሻለ",
+                "footer-desc": "በኢትዮጵያ ውስጥ ለሚነሱ ዘመናዊ የሕግ ተ hisጦዎች ከፍተኛ ጥራት ያለው የሕግ ሞገት እና ዲጂታል ግብአቶችን ያቀርባል።",
+                "footer-location": "አዲስ አበባ፣ ልደታ ክፍለ ከተማ",
+                "footer-nav-head": "ማውጫ",
+                "footer-support-head": "ሕጋዊ እና ድጋፍ",
+                "footer-terms": "የአገልግሎት ውል",
+                "footer-privacy": "የግላዊነት ፖሊሲ",
+                "footer-contact": "ሕግ አማካሪውን ያነጋግሩ",
+                "footer-rights": "© 2026 የኢያሱ አንድዓለም ሕግ ቢሮ። መብቱ በሕግ የተጠበቀ ነው።",
+                "footer-tech": "ዘመናዊ የሕግ ቴክኖሎጂ / የኢትዮጵያ ሕግ ፖርታል",
+                "store-back": "ወደ ዋናው ገጽ ተመለስ",
+                "store-head-title": "የሕግ ፎርማቶች መደብር",
+                "store-head-desc": "በአሁኑ የኢትዮጵያ ሕጎች መሠረት የተዘጋጁ ደረጃቸውን የጠበቁ የሕግ ፎርማቶችንና ክሶችን ይፈልጉ እና ያውርዱ።",
+                "store-civil-tab": "ፍትሐብሔር",
+                "store-criminal-tab": "ወንጀል",
+                "cassation-header": "የሰበር ውሳኔዎች መፈለጊያ ኢንጂን",
+                "cassation-title": "የ686 ገጽ ሰበር ውሳኔዎች ፍለጋ",
+                "cassation-desc": "ማንኛውንም ቃል ወይም የአንቀፅ ቁጥር ያስገቡ። እያንዳንዱ የተገኘ ውጤት ከትክክለኛው ገጽ ቁጥር ጋር የሚታይ ሲሆን በቀጥታ በፒዲኤፉ ላይ መክፈት ይችላሉ።",
+                "search-btn": "ፈልግ"
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            const btnEn = document.getElementById('lang-btn-en');
+            const btnAm = document.getElementById('lang-btn-am');
+            
+            if (lang === 'en') {
+                btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-gold-500 text-navy-950 shadow";
+                btnAm.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800";
+            } else {
+                btnAm.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-gold-500 text-navy-950 shadow";
+                btnEn.className = "px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-300 hover:text-white hover:bg-slate-800";
+            }
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nTranslations[lang] && i18nTranslations[lang][key]) {
+                    el.innerHTML = i18nTranslations[lang][key];
+                }
+            });
+        }
+
         let currentPage = 1;
 
         // Modal functions
         function openBuyModal() {
             const modalText = document.getElementById('buyModalText');
             if (currentPage === 2) {
-                modalText.innerText = "መግዛት የሚፈልጉትን የወንጀል ኬዝ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ";
+                modalText.innerText = (currentLang === 'en') 
+                    ? "You can purchase the requested Criminal Case format on WhatsApp below:" 
+                    : "መግዛት የሚፈልጉትን የወንጀል ኬዝ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ";
             } else {
-                modalText.innerText = "መግዛት የሚፈልጉትን የፍትሐ ብሔር ክስ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ";
+                modalText.innerText = (currentLang === 'en')
+                    ? "You can purchase the requested Civil Claim format on WhatsApp below:"
+                    : "መግዛት የሚፈልጉትን የፍትሐ ብሔር ክስ ከታች ባለው ዋትስአፕ ማግኘት ይችላሉ";
             }
             document.getElementById('buyModal').classList.remove('hidden');
         }
@@ -1442,7 +1595,7 @@
                             </div>
                             <div class="flex items-center flex-shrink-0">
                                 <button onclick="openBuyModal()" class="buy-circle-btn" title="Buy Format">
-                                    Buy
+                                    ${currentLang === 'en' ? 'Buy' : 'ግዛ'}
                                 </button>
                             </div>
                         `;
@@ -1666,22 +1819,18 @@
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-xs font-bold uppercase tracking-wide text-gold-600">Page ${p.pageNumber}</span>
                             <a href="${EMBEDDED_PDF_FILENAME}#page=${p.pageNumber}" target="_blank" rel="noopener noreferrer"
-                               class="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 bg-amber-100 hover:bg-amber-200 px-3 py-1.5 rounded-lg transition-colors">
-                                <i class="fa-solid fa-file-pdf text-gold-600"></i> Open page ${p.pageNumber} in PDF
+                               class="inline-flex items-center gap-1.5 text-xs font-bold text-gold-600 hover:text-gold-700">
+                                Open Page ${p.pageNumber} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                             </a>
                         </div>
-                        <div class="page-result text-sm text-slate-700">${snippets.join('<br>')}</div>
-                    </div>
-                `;
+                        <div class="text-sm text-slate-700 space-y-1">
+                            ${snippets.map(s => `<p class="page-result">${s}</p>`).join('')}
+                        </div>
+                    </div>`;
             });
 
             container.innerHTML = html;
-
-            const firstMatch = container.querySelector('mark');
-            if (firstMatch) {
-                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            statusEl.innerText = `Found ${totalMatches} match(es) across ${matchingPages.length} page(s).`;
+            statusEl.innerText = `Showing results for "${searchTerm}"`;
         }
     </script>
 </body>
